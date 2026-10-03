@@ -1,0 +1,22 @@
+# Dependências e build
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Variáveis de ambiente: NUNCA versionar o .env (use o .env.example como modelo)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
