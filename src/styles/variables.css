@@ -1,0 +1,86 @@
+/*
+ * Tokens do design system do Alvo.
+ * Toda cor, fonte, raio e sombra do app sai daqui: um ajuste de marca muda um arquivo só.
+ *
+ * Breakpoints (CSS não aceita variável dentro de @media, então use estes números):
+ *   480px  celular grande
+ *   768px  tablet
+ *   1024px desktop
+ *   1440px telas largas
+ */
+:root {
+  /* Superfícies e texto */
+  --cor-fundo: #fafaf7;
+  --cor-superficie: #ffffff;
+  --cor-superficie-suave: #f4f3ee;
+  --cor-tinta: #1a1a17;
+  --cor-texto-secundario: #57564e;
+  --cor-texto-suave: #7a7970;
+  --cor-borda: #e7e5dc;
+  --cor-borda-forte: #d4d1c4;
+
+  /* Marca */
+  --cor-salvia: #a9db6b;
+  --cor-salvia-hover: #9acd5a;
+  --cor-salvia-clara: #e6f5d2;
+  --cor-sobre-salvia: #20330a;
+  --cor-manteiga: #f4e08a;
+  --cor-sobre-manteiga: #6e5a1e;
+  --cor-lavanda: #efedfb;
+  --cor-sobre-lavanda: #3d3880;
+
+  /* Status das candidaturas (fundo / texto) */
+  --status-aplicado-fundo: #e4e9ff;
+  --status-aplicado-texto: #2b3a99;
+  --status-entrevista-fundo: #fbefc8;
+  --status-entrevista-texto: #5a4708;
+  --status-oferta-fundo: #def6be;
+  --status-oferta-texto: #2f4a0a;
+  --status-rejeitado-fundo: #fbe0db;
+  --status-rejeitado-texto: #93362c;
+
+  /* Feedback */
+  --cor-erro: #93362c;
+  --cor-erro-fundo: #fbe0db;
+  --cor-sucesso: #2f4a0a;
+  --cor-sucesso-fundo: #def6be;
+
+  /* Tipografia */
+  --fonte-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fonte-ui: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.875rem;
+  --texto-base: 1rem;
+  --texto-lg: 1.125rem;
+  --texto-xl: 1.375rem;
+  --texto-2xl: 1.75rem;
+  --texto-3xl: 2.25rem;
+  --texto-4xl: 3rem;
+
+  /* Espaçamento (escala de 4px) */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.25rem;
+  --espaco-6: 1.5rem;
+  --espaco-8: 2rem;
+  --espaco-10: 2.5rem;
+  --espaco-12: 3rem;
+  --espaco-16: 4rem;
+
+  /* Raios: cada nível de hierarquia tem o seu */
+  --raio-campo: 12px;
+  --raio-botao: 14px;
+  --raio-card: 20px;
+  --raio-card-grande: 24px;
+  --raio-pill: 999px;
+
+  --sombra-card: 0 10px 26px -18px rgba(30, 50, 90, 0.4);
+  --sombra-elevada: 0 22px 44px -26px rgba(30, 50, 90, 0.45);
+
+  --largura-conteudo: 1200px;
+  --transicao: 160ms ease;
+}
