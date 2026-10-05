@@ -1,0 +1,84 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.header__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.header__simbolo {
+  width: 28px;
+  height: 28px;
+}
+
+/* Botão de menu com três traços desenhados em CSS (sem ícone externo) */
+.header__menu {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-botao);
+  background: var(--cor-superficie);
+  cursor: pointer;
+}
+
+.header__menu-icone,
+.header__menu-icone::before,
+.header__menu-icone::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cor-tinta);
+}
+
+.header__menu-icone {
+  position: relative;
+}
+
+.header__menu-icone::before,
+.header__menu-icone::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.header__menu-icone::before {
+  top: -6px;
+}
+
+.header__menu-icone::after {
+  top: 6px;
+}
+
+@media (min-width: 768px) {
+  .header__barra {
+    flex-wrap: nowrap;
+  }
+
+  .header__menu {
+    display: none;
+  }
+}
