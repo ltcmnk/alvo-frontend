@@ -1,0 +1,130 @@
+.hero {
+  position: relative;
+  overflow: hidden; /* as colinas e o alvo passam da borda; sem isso haveria scroll horizontal */
+  padding-block: var(--espaco-10) var(--espaco-16);
+}
+
+.hero__conteudo {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--espaco-8);
+  align-items: center;
+}
+
+.hero__rotulo {
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.hero__titulo {
+  margin-top: var(--espaco-3);
+  font-size: 2.375rem;
+  line-height: 1.05;
+}
+
+.hero__descricao {
+  margin-top: var(--espaco-4);
+  max-width: 52ch;
+  font-size: var(--texto-lg);
+  color: var(--cor-texto-secundario);
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-6);
+}
+
+.hero__marca {
+  justify-self: center;
+  width: min(220px, 60vw);
+}
+
+/* Colinas em sálvia, herdadas do protótipo de alta fidelidade */
+.hero__colinas {
+  position: absolute;
+  inset: auto -10% -90px;
+  height: 190px;
+  background:
+    radial-gradient(ellipse 34% 100% at 24% 100%, var(--cor-salvia) 0 70%, transparent 71%),
+    radial-gradient(ellipse 40% 82% at 74% 100%, var(--cor-salvia-clara) 0 70%, transparent 71%);
+}
+
+.passos {
+  padding-block: var(--espaco-12);
+}
+
+.passos__titulo {
+  font-size: var(--texto-2xl);
+  margin-bottom: var(--espaco-6);
+}
+
+.passos__lista {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.passo__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--raio-pill);
+  background: var(--cor-salvia-clara);
+  color: var(--cor-sobre-salvia);
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-sm);
+}
+
+.passo__titulo {
+  margin-top: var(--espaco-4);
+  font-size: var(--texto-xl);
+}
+
+.passo__texto {
+  margin-top: var(--espaco-2);
+  color: var(--cor-texto-secundario);
+}
+
+@media (min-width: 480px) {
+  .hero__titulo {
+    font-size: 2.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: var(--espaco-16) 7rem;
+  }
+
+  .hero__conteudo {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+
+  .hero__titulo {
+    font-size: var(--texto-4xl);
+  }
+
+  .hero__marca {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__titulo {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero__titulo {
+    font-size: 4.25rem;
+  }
+}
