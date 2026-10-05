@@ -1,0 +1,62 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  min-height: 44px; /* área mínima de toque recomendada para celular */
+  padding: 0 var(--espaco-5);
+  border: 1px solid transparent;
+  border-radius: var(--raio-botao);
+  font-weight: 600;
+  font-size: var(--texto-sm);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transicao),
+    border-color var(--transicao);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button--sm {
+  min-height: 36px;
+  padding: 0 var(--espaco-3);
+  font-size: var(--texto-xs);
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button--primary {
+  background: var(--cor-salvia);
+  color: var(--cor-sobre-salvia);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--cor-salvia-hover);
+}
+
+.button--secondary {
+  background: var(--cor-superficie);
+  border-color: var(--cor-borda-forte);
+  color: var(--cor-tinta);
+}
+
+.button--secondary:hover:not(:disabled) {
+  border-color: var(--cor-tinta);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--cor-texto-secundario);
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: var(--cor-superficie-suave);
+  color: var(--cor-tinta);
+}
