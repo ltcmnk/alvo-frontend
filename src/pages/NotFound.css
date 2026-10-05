@@ -1,0 +1,34 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-4);
+  max-width: 640px;
+}
+
+.not-found__codigo {
+  font-family: var(--fonte-titulo);
+  font-size: 5.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--cor-salvia);
+  -webkit-text-stroke: 2px var(--cor-tinta);
+}
+
+.not-found__titulo {
+  font-size: var(--texto-2xl);
+}
+
+.not-found__texto {
+  color: var(--cor-texto-secundario);
+}
+
+@media (min-width: 768px) {
+  .not-found__codigo {
+    font-size: 8rem;
+  }
+
+  .not-found__titulo {
+    font-size: var(--texto-3xl);
+  }
+}
