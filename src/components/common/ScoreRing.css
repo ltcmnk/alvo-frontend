@@ -1,0 +1,57 @@
+.score-ring {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.score-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* o progresso começa no topo, como um relógio */
+}
+
+.score-ring circle {
+  fill: none;
+  stroke-width: 6;
+}
+
+.score-ring__trilho {
+  stroke: var(--cor-superficie-suave);
+}
+
+.score-ring__progresso {
+  stroke-linecap: round;
+}
+
+.score-ring__valor {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: var(--texto-lg);
+}
+
+.score-ring--baixa .score-ring__progresso {
+  stroke: var(--status-rejeitado-texto);
+}
+
+.score-ring--baixa .score-ring__valor {
+  color: var(--status-rejeitado-texto);
+}
+
+.score-ring--boa .score-ring__progresso {
+  stroke: var(--cor-manteiga);
+}
+
+.score-ring--boa .score-ring__valor {
+  color: var(--cor-sobre-manteiga);
+}
+
+.score-ring--forte .score-ring__progresso {
+  stroke: var(--cor-salvia);
+}
+
+.score-ring--forte .score-ring__valor {
+  color: var(--cor-sucesso);
+}
