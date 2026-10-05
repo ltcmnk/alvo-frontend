@@ -1,0 +1,46 @@
+.api-status {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--espaco-2) var(--espaco-3);
+  max-width: 100%;
+  padding: var(--espaco-2) var(--espaco-4);
+  border-radius: var(--raio-campo);
+  font-size: var(--texto-sm);
+}
+
+.api-status__ponto {
+  flex-shrink: 0;
+  margin-top: 0.45em; /* alinha o ponto com a primeira linha quando o texto quebra */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.api-status--verificando {
+  background: var(--cor-superficie-suave);
+  color: var(--cor-texto-secundario);
+}
+
+.api-status--online {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.api-status__texto {
+  min-width: 0;
+}
+
+.api-status--erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+.api-status__tentar {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}

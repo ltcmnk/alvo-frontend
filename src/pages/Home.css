@@ -40,6 +40,10 @@
   margin-top: var(--espaco-6);
 }
 
+.hero__status {
+  margin-top: var(--espaco-5);
+}
+
 .hero__marca {
   justify-self: center;
   width: min(220px, 60vw);

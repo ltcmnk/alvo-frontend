@@ -1,3 +1,4 @@
+import ApiStatus from '../components/ApiStatus'
 import Button from '../components/common/Button'
 import Card from '../components/common/Card'
 import './Home.css'
@@ -48,6 +49,9 @@ function Hero() {
             <Button to="/otimizar" variant="secondary">
               Otimizar para uma vaga
             </Button>
+          </div>
+          <div className="hero__status">
+            <ApiStatus />
           </div>
         </div>
         <MarcaAlvo />
