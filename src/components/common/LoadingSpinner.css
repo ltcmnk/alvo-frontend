@@ -1,0 +1,24 @@
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-8) var(--espaco-4);
+  color: var(--cor-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.loading-spinner__circulo {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--cor-salvia-clara);
+  border-top-color: var(--cor-salvia-hover);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

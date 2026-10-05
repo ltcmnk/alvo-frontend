@@ -1,0 +1,52 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  min-width: 0;
+}
+
+.form-field__label {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+
+.form-field__controle {
+  width: 100%;
+  min-height: 46px;
+  padding: var(--espaco-3) var(--espaco-4);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-campo);
+  font-size: 1rem; /* 16px evita o zoom automático do iPhone ao focar o campo */
+  transition: border-color var(--transicao);
+}
+
+.form-field__controle::placeholder {
+  color: var(--cor-texto-suave);
+}
+
+.form-field__controle:hover {
+  border-color: var(--cor-texto-suave);
+}
+
+textarea.form-field__controle {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-field__dica {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-xs);
+}
+
+.form-field--erro .form-field__controle {
+  border-color: var(--cor-erro);
+}
+
+.form-field__erro {
+  color: var(--cor-erro);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+}
