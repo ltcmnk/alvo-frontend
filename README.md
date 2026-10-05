@@ -26,7 +26,7 @@ versão com IA entra nas próximas sprints.
 ## Pré-requisitos
 
 - Node.js **20.19 ou superior** (`node -v`)
-- A [alvo-api](https://github.com/<organizacao>/alvo-api) rodando em `http://localhost:3001`
+- A [alvo-api](https://github.com/ltcmnk/alvo-api) rodando em `http://localhost:3001`
   (sem ela, o app abre normalmente e mostra o aviso de API desconectada)
 
 ## Como rodar localmente
