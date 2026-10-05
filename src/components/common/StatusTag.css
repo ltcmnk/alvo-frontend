@@ -1,0 +1,30 @@
+.status-tag {
+  display: inline-block;
+  padding: var(--espaco-1) var(--espaco-3);
+  border-radius: var(--raio-pill);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--cor-superficie-suave);
+  color: var(--cor-texto-secundario);
+}
+
+.status-tag--aplicado {
+  background: var(--status-aplicado-fundo);
+  color: var(--status-aplicado-texto);
+}
+
+.status-tag--entrevista {
+  background: var(--status-entrevista-fundo);
+  color: var(--status-entrevista-texto);
+}
+
+.status-tag--oferta {
+  background: var(--status-oferta-fundo);
+  color: var(--status-oferta-texto);
+}
+
+.status-tag--rejeitado {
+  background: var(--status-rejeitado-fundo);
+  color: var(--status-rejeitado-texto);
+}
