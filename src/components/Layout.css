@@ -1,0 +1,16 @@
+/* Atalho de acessibilidade: aparece só quando recebe foco pelo teclado */
+.pular-conteudo {
+  position: absolute;
+  top: var(--espaco-2);
+  left: var(--espaco-2);
+  z-index: 20;
+  padding: var(--espaco-2) var(--espaco-4);
+  border-radius: var(--raio-campo);
+  background: var(--cor-tinta);
+  color: var(--cor-fundo);
+  transform: translateY(-200%);
+}
+
+.pular-conteudo:focus {
+  transform: translateY(0);
+}
