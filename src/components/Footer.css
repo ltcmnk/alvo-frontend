@@ -1,0 +1,30 @@
+.footer {
+  border-top: 1px solid var(--cor-borda);
+  background: var(--cor-superficie);
+}
+
+.footer__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding-block: var(--espaco-6);
+}
+
+.footer__marca {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-lg);
+  font-weight: 600;
+}
+
+.footer__texto {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+@media (min-width: 768px) {
+  .footer__conteudo {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

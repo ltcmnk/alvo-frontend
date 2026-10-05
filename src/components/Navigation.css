@@ -1,0 +1,58 @@
+/* Celular: o menu fica escondido e abre em lista abaixo do cabeçalho */
+.navigation {
+  display: none;
+  flex-basis: 100%;
+}
+
+.navigation--aberta {
+  display: block;
+}
+
+.navigation__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  padding: var(--espaco-2) 0 var(--espaco-4);
+  margin: 0;
+  list-style: none;
+}
+
+.navigation__link {
+  display: block;
+  padding: var(--espaco-3) var(--espaco-4);
+  border-radius: var(--raio-campo);
+  color: var(--cor-texto-secundario);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--transicao),
+    color var(--transicao);
+}
+
+.navigation__link:hover {
+  color: var(--cor-tinta);
+}
+
+.navigation__link.active {
+  background: var(--cor-superficie-suave);
+  color: var(--cor-tinta);
+  font-weight: 600;
+}
+
+/* Tablet em diante: menu sempre visível, em linha */
+@media (min-width: 768px) {
+  .navigation {
+    display: block;
+    flex-basis: auto;
+  }
+
+  .navigation__lista {
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .navigation__link {
+    padding: var(--espaco-2) var(--espaco-4);
+    font-size: var(--texto-sm);
+  }
+}

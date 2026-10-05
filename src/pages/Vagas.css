@@ -1,0 +1,75 @@
+/* Celular: colunas empilhadas. Tablet: 2 por linha. Desktop: as 4 etapas lado a lado. */
+.quadro-vagas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-4);
+}
+
+.coluna-vagas {
+  min-width: 0;
+  padding: var(--espaco-4);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  box-shadow: var(--sombra-card);
+}
+
+.coluna-vagas__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaco-3);
+}
+
+.coluna-vagas__total {
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-sm);
+}
+
+.coluna-vagas__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.coluna-vagas__vazia {
+  padding: var(--espaco-4) 0;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.cartao-vaga {
+  background: var(--cor-fundo);
+}
+
+.cartao-vaga__empresa {
+  font-weight: 600;
+}
+
+.cartao-vaga__cargo {
+  color: var(--cor-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.cartao-vaga__data {
+  margin-top: var(--espaco-1);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-xs);
+}
+
+@media (min-width: 768px) {
+  .quadro-vagas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .quadro-vagas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+  }
+}
