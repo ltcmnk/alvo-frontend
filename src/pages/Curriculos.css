@@ -1,0 +1,61 @@
+.lista-curriculos {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cartao-curriculo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+}
+
+.cartao-curriculo__tipo {
+  align-self: flex-start;
+  margin-bottom: var(--espaco-3);
+  padding: var(--espaco-1) var(--espaco-3);
+  border-radius: var(--raio-pill);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+}
+
+.cartao-curriculo__tipo--base {
+  background: var(--cor-superficie-suave);
+  color: var(--cor-texto-secundario);
+}
+
+.cartao-curriculo__tipo--otimizado {
+  background: var(--cor-salvia-clara);
+  color: var(--cor-sobre-salvia);
+}
+
+.cartao-curriculo__tipo--sob-medida {
+  background: var(--cor-manteiga);
+  color: var(--cor-sobre-manteiga);
+}
+
+.cartao-curriculo__cargo {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-lg);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.cartao-curriculo__nome {
+  color: var(--cor-texto-secundario);
+  font-size: var(--texto-sm);
+}
+
+.cartao-curriculo__rodape {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-4);
+  padding-top: var(--espaco-4);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.cartao-curriculo__data {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
