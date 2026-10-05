@@ -1,0 +1,69 @@
+.criar-curriculo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-8);
+  align-items: start;
+}
+
+.criar-curriculo__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-5);
+  min-width: 0;
+}
+
+/* fieldset tem margem, borda e largura mínima próprias que quebram o layout no celular */
+.secao-form {
+  min-width: 0;
+  margin: 0;
+}
+
+.secao-form__titulo {
+  float: left; /* faz a legend se comportar como um título comum dentro do card */
+  width: 100%;
+  margin-bottom: var(--espaco-4);
+  padding: 0;
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
+  font-weight: 600;
+}
+
+.secao-form__campos {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.mensagem-envio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  border-radius: var(--raio-campo);
+  font-weight: 500;
+}
+
+.mensagem-envio--sucesso {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.mensagem-envio--erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+@media (min-width: 1024px) {
+  .criar-curriculo {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+
+  /* A prévia acompanha a rolagem do formulário no desktop */
+  .criar-curriculo .previa {
+    position: sticky;
+    top: calc(64px + var(--espaco-6));
+  }
+}

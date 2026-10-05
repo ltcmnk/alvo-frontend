@@ -1,0 +1,73 @@
+.previa {
+  min-width: 0;
+}
+
+.previa__rotulo {
+  margin-bottom: var(--espaco-3);
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+/* Visual de folha de papel, para o usuário enxergar o documento final */
+.previa__documento {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  padding: var(--espaco-6);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-campo);
+  box-shadow: var(--sombra-elevada);
+  font-size: var(--texto-sm);
+  overflow-wrap: anywhere;
+}
+
+.previa__nome {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-2xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.previa__cargo {
+  margin-top: calc(-1 * var(--espaco-3));
+  color: var(--cor-texto-secundario);
+}
+
+.previa__contato {
+  margin-top: calc(-1 * var(--espaco-3));
+  color: var(--cor-texto-suave);
+}
+
+.previa__secao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding-top: var(--espaco-4);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.previa__secao-titulo {
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.previa__destaque {
+  font-weight: 600;
+}
+
+.previa__periodo {
+  font-weight: 400;
+  color: var(--cor-texto-suave);
+}
+
+.previa__experiencia + .previa__experiencia {
+  margin-top: var(--espaco-3);
+}

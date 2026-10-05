@@ -1,0 +1,50 @@
+.experiencias {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-4);
+}
+
+.experiencias__vazio {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.experiencia {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  width: 100%;
+  padding: var(--espaco-4);
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-campo);
+}
+
+.experiencia__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.experiencia__titulo {
+  font-weight: 600;
+}
+
+.experiencia__campos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-4);
+}
+
+.experiencia__erro {
+  color: var(--cor-erro);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .experiencia__campos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
