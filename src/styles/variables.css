@@ -1,5 +1,5 @@
 /*
- * Tokens do design system do Alvo.
+ * Tokens do design system do Alvo (protótipo de alta fidelidade "1c", pasta CLAUDE/ do projeto).
  * Toda cor, fonte, raio e sombra do app sai daqui: um ajuste de marca muda um arquivo só.
  *
  * Breakpoints (CSS não aceita variável dentro de @media, então use estes números):
@@ -9,25 +9,42 @@
  *   1440px telas largas
  */
 :root {
-  /* Superfícies e texto */
-  --cor-fundo: #fafaf7;
+  /* Superfícies: o app fica sobre o azul-céu claro do protótipo; cards são brancos */
+  --cor-fundo: #edf3fc;
+  --cor-creme: #fafaf7;
   --cor-superficie: #ffffff;
-  --cor-superficie-suave: #f4f3ee;
+  --cor-superficie-suave: #f7f9fd;
+  --cor-pilula: #f0f3f8;
   --cor-tinta: #1a1a17;
+  --cor-tinta-suave: #46453e;
   --cor-texto-secundario: #57564e;
   --cor-texto-suave: #7a7970;
-  --cor-borda: #e7e5dc;
-  --cor-borda-forte: #d4d1c4;
+  --cor-texto-apagado: #9a998f;
+  --cor-borda: #e2e0d6;
+  --cor-borda-fria: #e6eaf1;
+  --cor-borda-forte: #d7dee9;
 
   /* Marca */
   --cor-salvia: #a9db6b;
   --cor-salvia-hover: #9acd5a;
-  --cor-salvia-clara: #e6f5d2;
+  --cor-salvia-clara: #def6be;
+  --cor-salvia-fundo: #f2f6ee;
   --cor-sobre-salvia: #20330a;
+  --cor-salvia-escura: #2e4a0a;
   --cor-manteiga: #f4e08a;
+  --cor-manteiga-clara: #fbefc8;
   --cor-sobre-manteiga: #6e5a1e;
   --cor-lavanda: #efedfb;
   --cor-sobre-lavanda: #3d3880;
+  --cor-roxo: #7a66d6;
+  --cor-azul-suave: #e7effa;
+  --cor-azul-pilula: #e4e9ff;
+  --cor-azul-texto: #2b3a99;
+
+  /* Painel "céu" e colinas verdes, assinatura visual do protótipo */
+  --gradiente-ceu: linear-gradient(180deg, #eaf2fc, #e0eaf7);
+  --gradiente-colina: linear-gradient(180deg, #c9f091, #7cb446);
+  --gradiente-colina-2: linear-gradient(180deg, #bce981, #6ba63b);
 
   /* Status das candidaturas (fundo / texto) */
   --status-aplicado-fundo: #e4e9ff;
@@ -44,6 +61,8 @@
   --cor-erro-fundo: #fbe0db;
   --cor-sucesso: #2f4a0a;
   --cor-sucesso-fundo: #def6be;
+  --cor-aviso: #5a4708;
+  --cor-aviso-fundo: #fbefc8;
 
   /* Tipografia */
   --fonte-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -73,14 +92,18 @@
 
   /* Raios: cada nível de hierarquia tem o seu */
   --raio-campo: 12px;
-  --raio-botao: 14px;
-  --raio-card: 20px;
+  --raio-botao: 13px;
+  --raio-card: 18px;
   --raio-card-grande: 24px;
+  --raio-painel: 28px;
   --raio-pill: 999px;
 
-  --sombra-card: 0 10px 26px -18px rgba(30, 50, 90, 0.4);
-  --sombra-elevada: 0 22px 44px -26px rgba(30, 50, 90, 0.45);
+  /* Sombras suaves e azuladas, como no protótipo */
+  --sombra-card: 0 10px 26px -20px rgba(30, 50, 90, 0.4);
+  --sombra-secao: 0 14px 34px -22px rgba(30, 50, 90, 0.4);
+  --sombra-elevada: 0 34px 70px -44px rgba(30, 50, 90, 0.5);
 
-  --largura-conteudo: 1200px;
+  --largura-conteudo: 1240px;
+  --altura-cabecalho: 64px;
   --transicao: 160ms ease;
 }
