@@ -192,7 +192,7 @@ Ela avisa no grupo antes; ninguém mergeia nada em `qas` ou `main` por conta pr�
 - [ ] Sem scroll horizontal em pelo menos 2 resoluções (ex.: 375px e 1440px)
 - [ ] `.env.example` confere com as variáveis usadas no código
 
-## 6. Board no Trello
+## 6. Board no Jira
 
 ### Colunas
 
@@ -225,15 +225,15 @@ Labels: `FEAT` `FIX` `DOC` `DESIGN` `CHORE` `REFACTOR` `TEST`.
 ## 7. Fluxo completo do dia a dia
 
 ```
-1. Trello: pegue o card em TO DO, entre como membro, mova para DOING
+1. Jira: pegue o card em TO DO, entre como membro, mova para DOING
 2. git checkout develop && git pull origin develop
 3. git checkout -b feat/nome-da-tarefa
 4. Trabalhe e commite em passos pequenos: git add <arquivos> && git commit -m "feat(área): ..."
 5. git push origin feat/nome-da-tarefa
 6. Abra a PR para develop, preencha o template, avise no grupo
-7. Trello: mova para CODE REVIEW
+7. Jira: mova para CODE REVIEW
 8. Após aprovação: Create a merge commit
-9. Trello: mova para QAS; depois do QAS to MAIN, para DONE
+9. Jira: mova para QAS; depois do QAS to MAIN, para DONE
 ```
 
 ## 8. Proteção das branches no GitHub (líder)
