@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container footer__conteudo">
         <p className="footer__marca">alvo</p>
         <p className="footer__texto">
-          Projeto acadêmico, Sprint 1. Os dados exibidos são de exemplo.
+          Projeto acadêmico, Sprint 2. Os dados são de exemplo e ficam só na memória da API.
         </p>
         <p className="footer__texto">© {ANO_ATUAL} Equipe Alvo</p>
       </div>
