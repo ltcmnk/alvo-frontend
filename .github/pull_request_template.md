@@ -16,5 +16,5 @@
 - [ ] Nenhum `.env`, `node_modules` ou `console.log` esquecido
 - [ ] README atualizado (se mudou algo de setup ou rota)
 
-## Card no Trello
+## Card no Jira
 <!-- Cole o link do card. -->
