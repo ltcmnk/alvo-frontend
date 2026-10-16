@@ -74,7 +74,12 @@ candidaturas** em um produto honesto, acessível, em conformidade com a LGPD e f
 | **Must** | Login via OAuth · visualizar, cadastrar, editar e deletar **vagas** · visualizar, cadastrar (importação), editar e deletar **currículos** · melhoria de currículo por IA · relatório de compatibilidade · exportação de currículo · cadastrar, editar, visualizar e deletar **usuário** |
 | **Should** | Filtro de currículos · filtro de vagas · categorização de currículos · notificações por WhatsApp |
 | **Could** | Chatbot · funcionamento offline · auto-complete de campos · pesquisa de vagas online · notificações por e-mail · plano pago |
-| **Won't (agora)** | Consultoria humana · integração com LinkedIn · compartilhamento de currículo · seletor de modelos de IA |
+| **Won't (agora)** | Consultoria humana · integração com LinkedIn · compartilhamento de currículo |
+
+> **Mudança na Sprint 2:** o **seletor de provedor de IA** (Anthropic, OpenAI ou Google) saiu de
+> *Won't* e entrou como *Should*, por decisão da equipe: com três provedores o usuário escolhe o que tem
+> cota disponível e a equipe testa sem depender de uma única conta paga. Sem nenhuma chave configurada,
+> o Alvo funciona em **modo demonstração** (análise por regras, mesmo formato de resposta).
 
 ## O que a Semana 1 entrega
 
@@ -86,14 +91,34 @@ A Semana 1 constrói a **base técnica e organizacional** sobre a qual o MVP ser
 - Simulação do relatório de compatibilidade por palavras-chave, no formato que a IA vai preencher.
 - Documentação, user stories, backlog no Trello e protótipo de baixa fidelidade.
 
+## O que a Sprint 2 entrega
+
+- **Criação de currículo completa:** contatos (LinkedIn, GitHub, portfólio), resumo, experiências com
+  datas, formações, projetos (acadêmicos, pessoais, voluntários), competências técnicas e
+  comportamentais, idiomas, certificações e atividades complementares, com prévia igual ao PDF.
+- **Leitura de currículo existente:** upload de PDF ou DOCX **só para leitura**: o texto é extraído e
+  preenche o formulário; o arquivo não é salvo.
+- **Otimização com IA** (Anthropic, OpenAI ou Google, à escolha do usuário), baseada no prompt mestre
+  da equipe e com a regra de **nunca inventar informação**, reforçada por uma trava de fatos no código:
+  - análise automática da descrição da vaga, com as palavras-chave do setor;
+  - relatório de compatibilidade **antes de salvar**: requisitos atendidos e em falta, como preencher
+    cada gap e projetos acadêmicos reescritos como experiência prática;
+  - nota ATS de 0 a 100 (antes e depois), versão sob medida com % de compatibilidade, palavras-chave
+    por categoria, sugestões futuras, estimativa de aderência e riscos;
+  - prévia de como o ATS lê o documento (texto puro, campos extraídos e alertas).
+- **Editor:** revisar a versão gerada pela IA antes de salvar, com revisão ortográfica das edições e
+  exportação em **PDF, DOCX e LaTeX (Overleaf)** no padrão ATS (uma coluna, títulos padrão).
+- **Tracker de candidaturas:** cadastrar, mudar de etapa e excluir, com o currículo enviado e o % de
+  compatibilidade.
+- **Design** alinhado ao protótipo de alta fidelidade (top nav, painel céu com colinas, cards, accordions).
+
 ## Fora do MVP
 
-- Consultoria humana, integração com LinkedIn, compartilhamento de currículo e seletor de modelos
-  de IA (classificados como Won't).
+- Consultoria humana, integração com LinkedIn e compartilhamento de currículo (classificados como Won't).
 - Recursos do protótipo de alta fidelidade que não estão no MoSCoW como Must: créditos de IA,
   chave própria de API (BYOK), tradução de currículo e planos pagos.
 
-## Fora da Semana 1 (entra nas próximas sprints)
+## Próximas sprints
 
-Banco de dados, OAuth real, IA real, edição e exclusão de registros, importação de PDF,
-exportação, pagamento, tradução e quadro de candidaturas com arrastar e soltar.
+Banco de dados, OAuth real com Google, perfil de usuário e exclusão de conta (LGPD), quadro de
+candidaturas com arrastar e soltar e notificações.
