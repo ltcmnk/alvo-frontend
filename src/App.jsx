@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import CriarCurriculo from './pages/CriarCurriculo'
 import Curriculos from './pages/Curriculos'
+import EditorCurriculo from './pages/EditorCurriculo'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Otimizar from './pages/Otimizar'
@@ -20,6 +21,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/curriculos" element={<Curriculos />} />
           <Route path="/curriculos/novo" element={<CriarCurriculo />} />
+          {/* Com id: edita um currículo salvo. Sem id: edita o que veio da otimização, antes de salvar */}
+          <Route path="/curriculos/:id/editar" element={<EditorCurriculo />} />
+          <Route path="/curriculos/editar" element={<EditorCurriculo />} />
           <Route path="/otimizar" element={<Otimizar />} />
           <Route path="/vagas" element={<Vagas />} />
           <Route path="*" element={<NotFound />} />

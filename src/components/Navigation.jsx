@@ -9,7 +9,7 @@ const LINKS = [
 ]
 
 /**
- * Links principais do app. O NavLink marca a página atual (classe "active" e aria-current).
+ * Abas principais do app. O NavLink marca a página atual (classe "active" e aria-current).
  * @param {object} props
  * @param {boolean} props.aberto - No celular, controla se o menu aparece.
  * @param {() => void} props.aoNavegar - Chamado no clique, para fechar o menu no celular.

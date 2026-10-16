@@ -6,7 +6,7 @@
 }
 
 .form-field__label {
-  font-size: var(--texto-sm);
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--cor-texto-secundario);
 }
@@ -16,10 +16,14 @@
   min-height: 46px;
   padding: var(--espaco-3) var(--espaco-4);
   background: var(--cor-superficie);
-  border: 1px solid var(--cor-borda-forte);
+  border: 1px solid var(--cor-borda);
   border-radius: var(--raio-campo);
   font-size: 1rem; /* 16px evita o zoom automático do iPhone ao focar o campo */
   transition: border-color var(--transicao);
+}
+
+.form-field__controle:focus {
+  border-color: var(--cor-tinta);
 }
 
 .form-field__controle::placeholder {

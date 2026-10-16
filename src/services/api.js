@@ -19,6 +19,8 @@ const api = axios.create({
  * @returns {string} Mensagem pronta para o usuário.
  */
 export function extrairMensagemErro(erro) {
+  // Sem resposta por tempo esgotado não é API desligada: a IA pode levar mais de um minuto
+  if (erro?.code === 'ECONNABORTED') return 'A resposta demorou demais. Tente de novo em instantes.'
   if (!erro?.response) return MENSAGEM_SEM_CONEXAO
 
   const { error, detalhes } = erro.response.data ?? {}

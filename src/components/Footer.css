@@ -1,5 +1,5 @@
 .footer {
-  border-top: 1px solid var(--cor-borda);
+  border-top: 1px solid var(--cor-borda-fria);
   background: var(--cor-superficie);
 }
 

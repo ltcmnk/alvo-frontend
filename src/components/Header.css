@@ -1,10 +1,9 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: rgba(250, 250, 247, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--cor-borda);
+  z-index: 20;
+  background: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-borda-fria);
 }
 
 .header__barra {
@@ -12,23 +11,42 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
+  gap: 0 var(--espaco-6);
+  min-height: var(--altura-cabecalho);
 }
 
 .header__logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--espaco-2);
+  gap: 9px;
   font-family: var(--fonte-titulo);
-  font-size: var(--texto-xl);
+  font-size: 1.375rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
 
 .header__simbolo {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
+}
+
+.header__acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+}
+
+/* No celular o atalho some: o menu já leva a Otimizar */
+.header__cta {
+  display: none;
+}
+
+.header__cta-ponto {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--cor-sobre-salvia);
 }
 
 /* Botão de menu com três traços desenhados em CSS (sem ícone externo) */
@@ -38,7 +56,7 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid var(--cor-borda-forte);
+  border: 1px solid var(--cor-borda-fria);
   border-radius: var(--raio-botao);
   background: var(--cor-superficie);
   cursor: pointer;
@@ -80,5 +98,16 @@
 
   .header__menu {
     display: none;
+  }
+
+  /* Abas ocupam o meio e empurram o atalho para a direita */
+  .header .navigation {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__cta {
+    display: inline-flex;
   }
 }
