@@ -1,0 +1,33 @@
+/* Modal do protótipo: card branco grande com sombra, sobre fundo escurecido */
+.nova-candidatura {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--raio-card-grande);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-elevada);
+  color: var(--cor-tinta);
+}
+
+.nova-candidatura::backdrop {
+  background: rgba(26, 26, 23, 0.4);
+}
+
+.nova-candidatura__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  padding: var(--espaco-6);
+}
+
+.nova-candidatura__titulo {
+  font-size: var(--texto-2xl);
+}
+
+.nova-candidatura__acoes {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
