@@ -1,4 +1,4 @@
-/* Celular: colunas empilhadas. Tablet: 2 por linha. Desktop: as 4 etapas lado a lado. */
+/* Celular: colunas empilhadas. Tablet: 2 por linha. Desktop: as 4 etapas lado a lado (kanban). */
 .quadro-vagas {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -7,11 +7,9 @@
 
 .coluna-vagas {
   min-width: 0;
-  padding: var(--espaco-4);
-  background: var(--cor-superficie);
-  border: 1px solid var(--cor-borda);
+  padding: var(--espaco-3);
   border-radius: var(--raio-card);
-  box-shadow: var(--sombra-card);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .coluna-vagas__topo {
@@ -19,12 +17,12 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--espaco-3);
+  padding: var(--espaco-1);
 }
 
 .coluna-vagas__total {
-  color: var(--cor-texto-suave);
-  font-family: var(--fonte-mono);
-  font-size: var(--texto-sm);
+  color: var(--cor-texto-apagado);
+  font-weight: 700;
 }
 
 .coluna-vagas__lista {
@@ -37,17 +35,31 @@
 }
 
 .coluna-vagas__vazia {
-  padding: var(--espaco-4) 0;
+  padding: var(--espaco-4) var(--espaco-2);
   color: var(--cor-texto-suave);
   font-size: var(--texto-sm);
 }
 
 .cartao-vaga {
-  background: var(--cor-fundo);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--espaco-4);
+  border-radius: 14px;
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+}
+
+.cartao-vaga__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
 }
 
 .cartao-vaga__empresa {
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .cartao-vaga__cargo {
@@ -55,10 +67,39 @@
   font-size: var(--texto-sm);
 }
 
-.cartao-vaga__data {
-  margin-top: var(--espaco-1);
+.cartao-vaga__notas {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: var(--cor-texto-suave);
   font-size: var(--texto-xs);
+}
+
+.cartao-vaga__data {
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-xs);
+}
+
+.cartao-vaga__data a {
+  color: var(--cor-azul-texto);
+}
+
+.cartao-vaga__acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+  margin-top: var(--espaco-2);
+}
+
+.cartao-vaga__etapa {
+  min-height: 36px;
+  padding: 0 var(--espaco-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-superficie-suave);
+  font-size: var(--texto-sm);
 }
 
 @media (min-width: 768px) {
