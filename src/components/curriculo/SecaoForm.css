@@ -1,0 +1,31 @@
+/* fieldset tem margem, borda e largura mínima próprias que quebram o layout no celular */
+.secao-form {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+}
+
+.secao-form__titulo {
+  float: left; /* faz a legend se comportar como um título comum dentro do card */
+  width: 100%;
+  padding: 0;
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.secao-form__descricao {
+  clear: both;
+  padding-top: var(--espaco-1);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.secao-form__campos {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-4);
+}
