@@ -1,9 +1,10 @@
 import Button from '../components/common/Button'
 import FormularioCurriculo from '../components/curriculo/FormularioCurriculo'
+import LeitorArquivo from '../components/curriculo/LeitorArquivo'
 import MensagemEnvio from '../components/curriculo/MensagemEnvio'
 import PainelPrevia from '../components/curriculo/PainelPrevia'
 import useFormCurriculo from '../hooks/useFormCurriculo'
-import { curriculoVazio } from '../utils/curriculo'
+import { curriculoVazio, paraFormulario } from '../utils/curriculo'
 import './CriarCurriculo.css'
 
 /** Página de criação de currículo: formulário completo à esquerda e prévia ao vivo à direita (US01–US03). */
@@ -28,6 +29,7 @@ export default function CriarCurriculo() {
           </p>
         </div>
       </header>
+      <LeitorArquivo aoUsar={(curriculo) => form.substituir(paraFormulario(curriculo))} />
       <div className="criar-curriculo">
         <form className="criar-curriculo__form" onSubmit={salvar} noValidate>
           <FormularioCurriculo form={form} />
