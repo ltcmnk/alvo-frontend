@@ -1,0 +1,25 @@
+.escolha-ia {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.escolha-ia__titulo {
+  margin-bottom: var(--espaco-3);
+  padding: 0;
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.escolha-ia__opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.escolha-ia__aviso {
+  margin-top: var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-xs);
+}
