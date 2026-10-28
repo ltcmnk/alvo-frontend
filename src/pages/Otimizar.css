@@ -1,7 +1,44 @@
-.otimizar {
+.etapas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2) var(--espaco-5);
+  margin: 0 0 var(--espaco-5);
+  padding: 0;
+  list-style: none;
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.etapas__item {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+}
+
+.etapas__numero {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--cor-superficie);
+  font-size: var(--texto-xs);
+}
+
+.etapas__item--feita {
+  color: var(--cor-tinta);
+}
+
+.etapas__item--feita .etapas__numero {
+  background: var(--cor-salvia);
+  color: var(--cor-sobre-salvia);
+}
+
+.otimizar__entrada {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--espaco-6);
+  gap: var(--espaco-5);
   align-items: start;
 }
 
@@ -11,8 +48,62 @@
   gap: var(--espaco-5);
 }
 
+.otimizar__curriculos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.otimizar__curriculos legend {
+  margin-bottom: var(--espaco-3);
+  padding: 0;
+}
+
+.otimizar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.otimizar__acoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.otimizar__etapa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.otimizar__processando {
+  padding-block: var(--espaco-12);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+.otimizar__processando .loading-spinner {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
+  font-style: italic;
+  color: var(--cor-tinta);
+}
+
+@media (min-width: 768px) {
+  .otimizar__acoes {
+    flex-direction: row;
+  }
+}
+
 @media (min-width: 1024px) {
-  .otimizar {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  .otimizar__entrada {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   }
 }
