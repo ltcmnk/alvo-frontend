@@ -3,12 +3,13 @@
 Frontend do **Alvo**, plataforma que cria e otimiza currículos com foco em sistemas ATS e acompanha
 as candidaturas do usuário, da inscrição ao contrato.
 
-Nesta **Sprint 1 (Semana 1)** o frontend entrega a base: rotas navegáveis, componentes do design
-system, layout mobile-first e integração real com a API (status, listagem e criação de currículos,
-listagem de vagas). A comparação currículo × vaga roda como simulação por palavras-chave; a
-versão com IA entra nas próximas sprints.
+A **Sprint 1** entregou a base (rotas, design system, layout mobile-first e integração com a API).
+A **Sprint 2** trouxe o formulário completo, a leitura de PDF/DOCX, a prévia e a nota ATS, a
+otimização com IA e o acompanhamento de candidaturas. A **entrega final (versão 2.1)** acrescenta
+cadastro e login por e-mail e senha, a página Minha conta, o editor com revisão ortográfica e a
+exportação em PDF, DOCX e LaTeX. Os dados ficam salvos no banco da API, separados por conta.
 
-- API: [alvo-api](https://github.com/<organizacao>/alvo-api)
+- API: [alvo-api](https://github.com/ltcmnk/alvo-api)
 - Documentação do produto: [docs/](./docs)
 - Guia do time: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
@@ -19,27 +20,32 @@ versão com IA entra nas próximas sprints.
 | React 19 | Interface |
 | Vite 8 | Servidor de desenvolvimento e build |
 | React Router 7 (`react-router-dom`) | Rotas entre páginas |
-| Axios | Requisições HTTP para a API |
+| Axios | Requisições HTTP para a API (com o cookie de sessão, `withCredentials`) |
+| React Context | Usuário logado disponível para o app inteiro (`Sessao.jsx`) |
 | CSS puro com variáveis | Estilos mobile-first, sem framework |
 | oxlint | Lint |
 
 ## Pré-requisitos
 
-- Node.js **20.19 ou superior** (`node -v`)
+- Node.js **22.13 ou superior** (`node -v`), a mesma versão exigida pela API
 - A [alvo-api](https://github.com/ltcmnk/alvo-api) rodando em `http://localhost:3001`
   (sem ela, o app abre normalmente e mostra o aviso de API desconectada)
 
 ## Como rodar localmente
 
 ```bash
-git clone https://github.com/<organizacao>/alvo-frontend.git
+git clone https://github.com/ltcmnk/alvo-frontend.git
 cd alvo-frontend
 npm install
 cp .env.example .env      # no Windows (PowerShell): copy .env.example .env
 npm run dev
 ```
 
-Acesse **http://localhost:5173**. Com a API ligada, a Home mostra "API conectada".
+Acesse **http://localhost:5173**, clique em **Entrar → Criar conta** e cadastre-se. Com a API
+ligada, a Home mostra "API conectada".
+
+> Abra o site em `localhost` (não em `127.0.0.1`): o cookie de sessão só vale quando o frontend e a
+> API usam o mesmo nome de host.
 
 ### Scripts
 
@@ -65,12 +71,28 @@ Acesse **http://localhost:5173**. Com a API ligada, a Home mostra "API conectada
 
 | Rota | Página | O que faz |
 | --- | --- | --- |
+Públicas:
+
+| Rota | Página | O que faz |
+| --- | --- | --- |
 | `/` | `Home` | Apresentação, atalhos e status da conexão com a API |
-| `/curriculos` | `Curriculos` | Lista de currículos com pontuação (GET `/api/curriculos`) |
-| `/curriculos/novo` | `CriarCurriculo` | Formulário com prévia ao vivo (POST `/api/curriculos`) |
-| `/otimizar` | `Otimizar` | Compara um currículo com a descrição de uma vaga |
-| `/vagas` | `Vagas` | Candidaturas agrupadas por etapa (GET `/api/vagas`) |
+| `/entrar` · `/cadastro` | `Acesso` | Login e cadastro por e-mail e senha |
 | qualquer outra | `NotFound` | Página 404 |
+
+Exigem login (sem sessão, vão para `/entrar` e voltam depois):
+
+| Rota | Página | O que faz |
+| --- | --- | --- |
+| `/curriculos` | `Curriculos` | Lista com nota ATS, filtro por tipo, PDF e exclusão |
+| `/curriculos/novo` | `CriarCurriculo` | Formulário completo com prévia ao vivo e importação de PDF/DOCX |
+| `/curriculos/:id/editar` | `EditorCurriculo` | Edita um currículo salvo, revisa a ortografia e exporta |
+| `/curriculos/editar` | `EditorCurriculo` | Revisa a versão gerada pela IA antes de salvar |
+| `/otimizar` | `Otimizar` | Relatório de compatibilidade com a vaga e otimização com IA |
+| `/vagas` | `Vagas` | Candidaturas por etapa, com troca de etapa |
+| `/conta` | `Conta` | Nome e e-mail, editar nome, sair e excluir a conta |
+
+Na otimização, a nota ATS **nunca cai**: se a IA piorar uma seção, a API mantém o texto original
+dela e a tela avisa quais seções foram mantidas.
 
 ## Estrutura de pastas
 
@@ -86,6 +108,7 @@ alvo-frontend/
 │   │   ├── Footer.jsx
 │   │   ├── Layout.jsx             # Moldura comum: Header + página atual + Footer
 │   │   ├── ApiStatus.jsx          # Teste de integração: GET /api/health
+│   │   ├── Sessao.jsx             # Usuário logado (contexto) e guarda das rotas protegidas
 │   │   ├── common/                # Componentes reutilizáveis do design system
 │   │   │   ├── Button.jsx         # primary · secondary · ghost; vira <Link> com "to"
 │   │   │   ├── Card.jsx
@@ -95,17 +118,24 @@ alvo-frontend/
 │   │   │   ├── ScoreRing.jsx      # Anel de pontuação 0–100
 │   │   │   └── StatusTag.jsx      # Etiqueta da etapa da candidatura
 │   │   ├── curriculo/             # Peças do formulário de currículo
-│   │   └── otimizacao/            # Relatório de compatibilidade
+│   │   ├── editor/                # Botões de exportação e revisão ortográfica
+│   │   ├── otimizacao/            # Relatório de compatibilidade e resultado da otimização
+│   │   └── vagas/                 # Formulário e cartões das candidaturas
 │   ├── pages/                     # Uma página por rota (+ CSS da página)
 │   ├── services/                  # Comunicação com a API e regras de negócio
-│   │   ├── api.js                 # Instância do axios + tradução de erros
+│   │   ├── api.js                 # Instância do axios, cookie de sessão e tradução de erros
+│   │   ├── sessao.js              # Contexto e hook useSessao
 │   │   ├── healthService.js
 │   │   ├── curriculoService.js
 │   │   ├── vagaService.js
-│   │   └── otimizacaoService.js   # Análise por palavras-chave (simulação da IA)
+│   │   ├── iaService.js           # Provedores, análise da vaga, relatório e otimização
+│   │   ├── documentoService.js    # Leitura de PDF/DOCX
+│   │   └── exportacaoService.js   # Download PDF/DOCX/LaTeX e revisão ortográfica
 │   ├── hooks/
 │   │   ├── useApi.js              # { data, loading, error, recarregar } sem repetir try/catch
-│   │   └── useFormCurriculo.js    # Estado, validação e envio do formulário
+│   │   ├── useFormCurriculo.js    # Estado, validação e envio do formulário
+│   │   ├── useOtimizacao.js       # Etapas do fluxo de otimização
+│   │   └── usePreviaAts.js        # Nota ATS ao vivo enquanto o formulário é preenchido
 │   ├── utils/                     # Funções puras: datas, habilidades
 │   ├── styles/
 │   │   ├── variables.css          # Tokens: cores, fontes, raios, sombras, breakpoints
@@ -144,14 +174,17 @@ candidaturas. Tipografia: Fraunces (títulos), Geist (interface) e Geist Mono (r
 - JSDoc nas funções principais; comentários explicam o porquê.
 - Acessibilidade: rótulos ligados aos campos, `aria-current` na navegação, foco visível,
   atalho "Pular para o conteúdo" e respeito a `prefers-reduced-motion`.
+- Segurança: a sessão fica num cookie HttpOnly; o frontend não guarda senha nem token no
+  `localStorage`.
 
 ## Equipe
 
-<!-- Preencher: nome — papel — GitHub -->
-| Integrante | Papel |
-| --- | --- |
-| | Líder / Produto |
-| | |
+| Integrante | GitHub | Papel |
+| --- | --- | --- |
+| Letícia Miniuk Rosa Pereira | @ltcmnk | Líder: processo, design system e documentação |
+| Victor Willian Rodrigues Bittencourt | @scourgeyyy | API: modelo de currículo, nota ATS e IA |
+| Karen Cristini Nogueira | @nogueiiiiiiiiira | Editor, exportação, ortografia e candidaturas |
+| Rayssa Gaievicz Grafetti | @T-800-888 | Criação de currículo, leitura de arquivo e otimização |
 
 > A base deste projeto foi estruturada com apoio de IA (Claude, da Anthropic) e revisada,
 > testada e versionada pela equipe.
