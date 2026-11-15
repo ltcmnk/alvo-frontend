@@ -4,9 +4,11 @@ import Chip from '../components/common/Chip'
 import EmptyState from '../components/common/EmptyState'
 import Etiqueta from '../components/common/Etiqueta'
 import LoadingSpinner from '../components/common/LoadingSpinner'
+import BotoesExportar from '../components/editor/BotoesExportar'
 import useApi from '../hooks/useApi'
 import { extrairMensagemErro } from '../services/api'
 import { excluirCurriculo, listarCurriculos } from '../services/curriculoService'
+import { conteudoDoCurriculo } from '../utils/curriculo'
 import { formatarData } from '../utils/formatarData'
 import './Curriculos.css'
 
@@ -54,6 +56,7 @@ function CartaoCurriculo({ curriculo, aoExcluir }) {
           <Button to={`/curriculos/${curriculo.id}/editar`} variant="secondary" size="sm">
             Editar
           </Button>
+          <BotoesExportar obterCurriculo={() => conteudoDoCurriculo(curriculo)} formatos={['pdf']} />
           <Button to={`/otimizar?curriculo=${curriculo.id}`} variant="ghost" size="sm">
             Otimizar
           </Button>
