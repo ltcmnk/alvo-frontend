@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './common/Button'
+import { useSessao } from '../services/sessao'
 import Navigation from './Navigation'
 import './Header.css'
 
@@ -17,6 +18,7 @@ function SimboloAlvo() {
 
 /** Barra superior fixa: logo, abas e atalho para otimizar; no celular, as abas abrem por um botão. */
 export default function Header() {
+  const { usuario } = useSessao()
   const [menuAberto, setMenuAberto] = useState(false)
   const fecharMenu = useCallback(() => setMenuAberto(false), [])
 
@@ -29,6 +31,9 @@ export default function Header() {
         </Link>
         <Navigation aberto={menuAberto} aoNavegar={fecharMenu} />
         <div className="header__acoes">
+          <Button to={usuario ? '/conta' : '/entrar'} variant="ghost" size="sm" onClick={fecharMenu}>
+            {usuario ? 'Minha conta' : 'Entrar'}
+          </Button>
           <Button to="/otimizar" size="sm" className="header__cta" onClick={fecharMenu}>
             <span className="header__cta-ponto" aria-hidden="true" />
             Otimizar currículo

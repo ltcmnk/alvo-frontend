@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import { RotaProtegida, Sessao } from './components/Sessao'
 import Acesso from './pages/Acesso'
+import Conta from './pages/Conta'
 import CriarCurriculo from './pages/CriarCurriculo'
 import Curriculos from './pages/Curriculos'
 import EditorCurriculo from './pages/EditorCurriculo'
@@ -26,6 +27,7 @@ function App() {
             <Route path="/entrar" element={<Acesso key="entrar" />} />
             <Route path="/cadastro" element={<Acesso key="cadastro" cadastro />} />
             <Route element={<RotaProtegida />}>
+              <Route path="/conta" element={<Conta />} />
               <Route path="/curriculos" element={<Curriculos />} />
               <Route path="/curriculos/novo" element={<CriarCurriculo />} />
               {/* Com id: edita um currículo salvo. Sem id: edita o que veio da otimização, antes de salvar */}
