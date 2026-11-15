@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
+import { RotaProtegida, Sessao } from './components/Sessao'
+import Acesso from './pages/Acesso'
+import Conta from './pages/Conta'
 import CriarCurriculo from './pages/CriarCurriculo'
 import Curriculos from './pages/Curriculos'
 import EditorCurriculo from './pages/EditorCurriculo'
@@ -16,19 +19,27 @@ import './styles/App.css'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/curriculos" element={<Curriculos />} />
-          <Route path="/curriculos/novo" element={<CriarCurriculo />} />
-          {/* Com id: edita um currículo salvo. Sem id: edita o que veio da otimização, antes de salvar */}
-          <Route path="/curriculos/:id/editar" element={<EditorCurriculo />} />
-          <Route path="/curriculos/editar" element={<EditorCurriculo />} />
-          <Route path="/otimizar" element={<Otimizar />} />
-          <Route path="/vagas" element={<Vagas />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      {/* Sessao carrega o usuário logado; RotaProtegida manda para /entrar quem não está */}
+      <Sessao>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/entrar" element={<Acesso key="entrar" />} />
+            <Route path="/cadastro" element={<Acesso key="cadastro" cadastro />} />
+            <Route element={<RotaProtegida />}>
+              <Route path="/conta" element={<Conta />} />
+              <Route path="/curriculos" element={<Curriculos />} />
+              <Route path="/curriculos/novo" element={<CriarCurriculo />} />
+              {/* Com id: edita um currículo salvo. Sem id: edita o que veio da otimização, antes de salvar */}
+              <Route path="/curriculos/:id/editar" element={<EditorCurriculo />} />
+              <Route path="/curriculos/editar" element={<EditorCurriculo />} />
+              <Route path="/otimizar" element={<Otimizar />} />
+              <Route path="/vagas" element={<Vagas />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Sessao>
     </BrowserRouter>
   )
 }
