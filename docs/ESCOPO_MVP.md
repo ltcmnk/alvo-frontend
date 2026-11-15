@@ -122,3 +122,7 @@ A Semana 1 constrói a **base técnica e organizacional** sobre a qual o MVP ser
 
 Banco de dados, OAuth real com Google, perfil de usuário e exclusão de conta (LGPD), quadro de
 candidaturas com arrastar e soltar e notificações.
+
+## Entrega final (versão 2.1) — 14/11/2026
+
+A entrega final (versão 2.1) traz banco SQL (SQLite), cadastro/acesso por e-mail e senha, perfil (visualizar nome/e-mail, editar nome), logout e exclusão de conta/dados. O login Google foi dispensado para esta entrega por decisão do responsável. A tabela MoSCoW acima preserva a priorização original; não representa que OAuth foi implementado. Os dados deixaram de ser mocks compartilhados em memória e agora pertencem à conta cadastrada. O fluxo de branches passou a ser `feature → develop → main`: a `qas` foi removida.

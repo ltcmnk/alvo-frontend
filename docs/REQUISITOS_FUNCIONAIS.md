@@ -70,3 +70,9 @@ Legenda: ✅ entregue · 🟡 parcial (base pronta, complemento previsto) · ⏳
 
 Filtro de vagas · notificações por WhatsApp · chatbot · funcionamento offline · auto-complete de
 campos · pesquisa de vagas online · notificações por e-mail · plano pago.
+
+## Entrega final (versão 2.1) — 14/11/2026
+
+A coluna Sprint 2 acima registra a entrega histórica. A entrega final (versão 2.1) adiciona banco SQL (SQLite) e acesso por e-mail/senha. RF01 (OAuth Google) está dispensado no recorte acordado. RF02 é atendido por cadastro próprio; RF03 exibe nome/e-mail; RF04 permite editar nome; RF05 exclui a conta e os dados vinculados mediante senha. Não há edição de e-mail, confirmação por e-mail ou recuperação de senha. Currículos e candidaturas passam a ser persistentes e separados por conta.
+
+Filtro de currículos, categorias e seletor de provedor continuam entregues; filtro de vagas e WhatsApp continuam pendentes. A bateria completa e as limitações ficam em `docs/VALIDACAO_ENTREGA.md` do repositório [alvo-api](https://github.com/ltcmnk/alvo-api). A otimização com IA garante que a nota ATS do currículo não diminui.
