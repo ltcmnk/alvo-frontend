@@ -4,11 +4,12 @@ import axios from 'axios'
 // O exemplo do requisito usa process.env.REACT_APP_API_URL, que é sintaxe do Create React App.
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
 
-const MENSAGEM_SEM_CONEXAO = 'Não conseguimos falar com a API. Ela está rodando na porta 3001?'
+const MENSAGEM_SEM_CONEXAO = 'Não conseguimos falar com o servidor. Verifique sua conexão e tente de novo em instantes.'
 
 /** Cliente HTTP único do app: todas as chamadas à API passam por aqui. */
 const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
   timeout: 8000, // evita a tela presa em "carregando" se a API travar
   headers: { 'Content-Type': 'application/json' },
 })
@@ -27,5 +28,16 @@ export function extrairMensagemErro(erro) {
   if (Array.isArray(detalhes) && detalhes.length > 0) return detalhes.join(' · ')
   return error || `A API respondeu com erro ${erro.response.status}.`
 }
+
+// Sessão expirou durante o uso: avisa o componente Sessao, que manda o usuário para /entrar
+api.interceptors.response.use(
+  (resposta) => resposta,
+  (erro) => {
+    if (erro.response?.status === 401 && !erro.config?.url?.startsWith('/auth/')) {
+      window.dispatchEvent(new Event('alvo:sessao-expirada'))
+    }
+    return Promise.reject(erro)
+  },
+)
 
 export default api
