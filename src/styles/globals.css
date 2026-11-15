@@ -27,7 +27,7 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--fonte-titulo);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -49,6 +49,17 @@ a {
   color: inherit;
 }
 
+::selection {
+  background: var(--cor-salvia);
+  color: var(--cor-sobre-salvia);
+}
+
+/* Ênfase em itálico nos títulos, como no protótipo ("sob controle.") */
+h1 em,
+h2 em {
+  font-style: italic;
+}
+
 button,
 input,
 textarea,
@@ -62,7 +73,7 @@ select {
   outline-offset: 2px;
 }
 
-/* Container central: largura total no celular, limitada a 1200px no desktop */
+/* Container central: largura total no celular, limitada a 1240px no desktop */
 .container {
   width: 100%;
   max-width: var(--largura-conteudo);

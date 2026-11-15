@@ -2,6 +2,7 @@
 .navigation {
   display: none;
   flex-basis: 100%;
+  order: 3;
 }
 
 .navigation--aberta {
@@ -21,7 +22,7 @@
   display: block;
   padding: var(--espaco-3) var(--espaco-4);
   border-radius: var(--raio-campo);
-  color: var(--cor-texto-secundario);
+  color: var(--cor-texto-suave);
   font-weight: 500;
   text-decoration: none;
   transition:
@@ -33,26 +34,30 @@
   color: var(--cor-tinta);
 }
 
+/* Aba ativa em pílula cinza-azulada, como no protótipo */
 .navigation__link.active {
-  background: var(--cor-superficie-suave);
+  background: var(--cor-pilula);
   color: var(--cor-tinta);
   font-weight: 600;
 }
 
-/* Tablet em diante: menu sempre visível, em linha */
+/* Tablet em diante: abas sempre visíveis, em linha */
 @media (min-width: 768px) {
   .navigation {
     display: block;
     flex-basis: auto;
+    order: 0;
   }
 
   .navigation__lista {
     flex-direction: row;
+    gap: 6px;
     padding: 0;
   }
 
   .navigation__link {
-    padding: var(--espaco-2) var(--espaco-4);
+    padding: 8px 14px;
+    border-radius: 11px;
     font-size: var(--texto-sm);
   }
 }

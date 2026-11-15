@@ -1,0 +1,41 @@
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 4px 10px;
+  border-radius: var(--raio-pill);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.etiqueta--neutro {
+  background: var(--cor-pilula);
+  color: var(--cor-texto-secundario);
+}
+
+.etiqueta--salvia {
+  background: var(--cor-salvia-clara);
+  color: var(--status-oferta-texto);
+}
+
+.etiqueta--manteiga {
+  background: var(--cor-manteiga-clara);
+  color: var(--status-entrevista-texto);
+}
+
+.etiqueta--azul {
+  background: var(--cor-azul-pilula);
+  color: var(--cor-azul-texto);
+}
+
+.etiqueta--lavanda {
+  background: var(--cor-lavanda);
+  color: var(--cor-sobre-lavanda);
+}
+
+.etiqueta--erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}

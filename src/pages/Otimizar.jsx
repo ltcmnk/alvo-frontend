@@ -1,128 +1,173 @@
-import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Button from '../components/common/Button'
 import Card from '../components/common/Card'
+import Chip from '../components/common/Chip'
 import EmptyState from '../components/common/EmptyState'
 import FormField from '../components/common/FormField'
 import LoadingSpinner from '../components/common/LoadingSpinner'
-import ResultadoAnalise from '../components/otimizacao/ResultadoAnalise'
+import AnaliseVaga from '../components/otimizacao/AnaliseVaga'
+import EscolhaProvedorIa from '../components/otimizacao/EscolhaProvedorIa'
+import RelatorioCompatibilidade from '../components/otimizacao/RelatorioCompatibilidade'
+import ResultadoOtimizacao from '../components/otimizacao/ResultadoOtimizacao'
 import useApi from '../hooks/useApi'
+import useOtimizacao, { MINIMO_VAGA } from '../hooks/useOtimizacao'
 import { listarCurriculos } from '../services/curriculoService'
-import { analisarCompatibilidade } from '../services/otimizacaoService'
 import './Otimizar.css'
 
-// Descrições muito curtas não têm palavras-chave suficientes para a comparação fazer sentido
-const MINIMO_CARACTERES_VAGA = 80
+const ETAPAS = [
+  { id: 'entrada', rotulo: 'Currículo e vaga' },
+  { id: 'relatorio', rotulo: 'Compatibilidade' },
+  { id: 'resultado', rotulo: 'Versão otimizada' },
+]
 
-/** Valida a escolha do currículo e o tamanho da descrição da vaga. */
-function validarEntrada(idCurriculo, descricaoVaga) {
-  const erros = {}
-  if (!idCurriculo) erros.curriculo = 'Escolha qual currículo comparar.'
-  if (descricaoVaga.trim().length < MINIMO_CARACTERES_VAGA) {
-    erros.vaga = `Cole a descrição completa da vaga (mínimo de ${MINIMO_CARACTERES_VAGA} caracteres).`
-  }
-  return erros
-}
+const TEXTO_PROCESSANDO = { relatorio: 'Comparando com a vaga…', otimizacao: 'Reescrevendo e pontuando…' }
 
-/** Estado do formulário e execução da análise, separados da apresentação. */
-function useAnaliseVaga(curriculos) {
-  const [idCurriculo, setIdCurriculo] = useState('')
-  const [descricaoVaga, setDescricaoVaga] = useState('')
-  const [erros, setErros] = useState({})
-  const [resultado, setResultado] = useState(null)
-
-  function analisar(evento) {
-    evento.preventDefault()
-    const errosEncontrados = validarEntrada(idCurriculo, descricaoVaga)
-    setErros(errosEncontrados)
-    if (Object.keys(errosEncontrados).length > 0) return
-    const curriculo = curriculos.find((item) => String(item.id) === idCurriculo)
-    setResultado(analisarCompatibilidade(curriculo, descricaoVaga))
-  }
-
-  return { idCurriculo, setIdCurriculo, descricaoVaga, setDescricaoVaga, erros, resultado, analisar }
-}
-
-/** Formulário: escolha do currículo e descrição da vaga. */
-function FormularioAnalise({ curriculos, analise }) {
+/** Indicador das três etapas do fluxo. */
+function Etapas({ atual }) {
+  const indiceAtual = ETAPAS.findIndex((etapa) => etapa.id === atual)
   return (
-    <Card as="form" className="otimizar__form" onSubmit={analise.analisar} noValidate>
-      <FormField
-        as="select"
-        label="Currículo"
-        name="curriculo"
-        value={analise.idCurriculo}
-        onChange={(evento) => analise.setIdCurriculo(evento.target.value)}
-        error={analise.erros.curriculo}
-        obrigatorio
-      >
-        <option value="">Selecione um currículo</option>
-        {curriculos.map((curriculo) => (
-          <option key={curriculo.id} value={curriculo.id}>
-            {curriculo.cargoAlvo} ({curriculo.nome})
-          </option>
-        ))}
-      </FormField>
-      <FormField
-        as="textarea"
-        label="Descrição da vaga"
-        name="descricaoVaga"
-        rows={9}
-        placeholder="Cole aqui o texto completo do anúncio: atividades, requisitos e diferenciais."
-        value={analise.descricaoVaga}
-        onChange={(evento) => analise.setDescricaoVaga(evento.target.value)}
-        error={analise.erros.vaga}
-        obrigatorio
-      />
-      <Button type="submit" fullWidth>
-        Analisar compatibilidade
-      </Button>
-    </Card>
+    <ol className="etapas" aria-label="Etapas da otimização">
+      {ETAPAS.map((etapa, indice) => (
+        <li key={etapa.id} className={`etapas__item${indice <= indiceAtual ? ' etapas__item--feita' : ''}`} aria-current={indice === indiceAtual ? 'step' : undefined}>
+          <span className="etapas__numero">{indice + 1}</span>
+          {etapa.rotulo}
+        </li>
+      ))}
+    </ol>
   )
 }
 
-/** Conteúdo conforme o carregamento da lista de currículos. */
-function ConteudoOtimizar({ curriculos, loading, error, recarregar }) {
-  const analise = useAnaliseVaga(curriculos ?? [])
-
-  if (loading) return <LoadingSpinner label="Carregando seus currículos…" />
-  if (error) {
-    return (
-      <EmptyState
-        tone="error"
-        title="Não foi possível carregar seus currículos"
-        description={error}
-        action={<Button variant="secondary" onClick={recarregar}>Tentar de novo</Button>}
-      />
-    )
-  }
-
+/** Etapa 1: currículo base, vaga, provedor de IA e as duas ações. */
+function Entrada({ curriculos, fluxo }) {
+  const { entrada, alterar } = fluxo
   return (
-    <div className="otimizar">
-      <FormularioAnalise curriculos={curriculos} analise={analise} />
-      {analise.resultado ? (
-        <ResultadoAnalise resultado={analise.resultado} />
-      ) : (
-        <EmptyState title="O resultado aparece aqui" description="Escolha um currículo, cole a vaga e clique em Analisar compatibilidade." />
-      )}
+    <div className="otimizar__entrada">
+      <Card className="otimizar__form">
+        <fieldset className="otimizar__curriculos">
+          <legend className="titulo-bloco">Currículo base</legend>
+          <div className="otimizar__chips">
+            {curriculos.map((curriculo) => (
+              <Chip key={curriculo.id} ativo={String(curriculo.id) === String(entrada.curriculoId)} aoClicar={() => alterar('curriculoId', String(curriculo.id))} detalhe={`${curriculo.pontuacao}/100`}>
+                {curriculo.cargoAlvo}
+              </Chip>
+            ))}
+          </div>
+          <Button to="/curriculos/novo" variant="ghost" size="sm">
+            + Criar um currículo novo
+          </Button>
+        </fieldset>
+        <FormField
+          as="textarea"
+          label="Descrição da vaga"
+          name="descricaoVaga"
+          rows={9}
+          placeholder="Cole aqui o anúncio completo: título, atividades, requisitos e diferenciais."
+          hint={`${entrada.descricaoVaga.trim().length} caracteres (mínimo ${MINIMO_VAGA} para o relatório).`}
+          value={entrada.descricaoVaga}
+          onChange={(evento) => alterar('descricaoVaga', evento.target.value)}
+        />
+        <EscolhaProvedorIa valor={entrada.provedor} aoMudar={(id) => alterar('provedor', id)} />
+        {fluxo.erro && (
+          <p className="mensagem-envio mensagem-envio--erro" role="alert">
+            {fluxo.erro}
+          </p>
+        )}
+        <div className="otimizar__acoes">
+          <Button variant="escuro" onClick={fluxo.relatar} disabled={!fluxo.temVaga}>
+            Gerar relatório de compatibilidade
+          </Button>
+          <Button variant="secondary" onClick={fluxo.otimizar}>
+            {fluxo.temVaga ? 'Pular e otimizar direto' : 'Otimizar só para ATS'}
+          </Button>
+        </div>
+      </Card>
+      <AnaliseVaga analise={fluxo.analiseVaga} />
     </div>
   )
 }
 
-/** Página "Otimizar": compara um currículo com a descrição de uma vaga (US04 e US05). */
+/** Conteúdo da página conforme a etapa e o carregamento dos currículos. */
+function ConteudoOtimizar({ curriculos, idInicial }) {
+  const fluxo = useOtimizacao(curriculos, idInicial)
+
+  if (fluxo.processando) {
+    return (
+      <Card className="otimizar__processando">
+        <LoadingSpinner label={TEXTO_PROCESSANDO[fluxo.processando]} />
+        <p>Com IA isso pode levar até um minuto.</p>
+      </Card>
+    )
+  }
+
+  return (
+    <>
+      <Etapas atual={fluxo.etapa} />
+      {fluxo.etapa === 'entrada' && <Entrada curriculos={curriculos} fluxo={fluxo} />}
+      {fluxo.etapa === 'relatorio' && (
+        <div className="otimizar__etapa">
+          <RelatorioCompatibilidade relatorio={fluxo.relatorio} />
+          {fluxo.erro && (
+            <p className="mensagem-envio mensagem-envio--erro" role="alert">
+              {fluxo.erro}
+            </p>
+          )}
+          <div className="otimizar__acoes">
+            <Button variant="escuro" onClick={fluxo.otimizar}>
+              Otimizar currículo para esta vaga
+            </Button>
+            <Button variant="secondary" onClick={() => fluxo.setEtapa('entrada')}>
+              Voltar e ajustar
+            </Button>
+          </div>
+        </div>
+      )}
+      {fluxo.etapa === 'resultado' && (
+        <ResultadoOtimizacao
+          resultado={fluxo.resultado}
+          original={fluxo.curriculo}
+          analiseVaga={fluxo.temVaga ? fluxo.analiseVaga : null}
+          descricaoVaga={fluxo.temVaga ? fluxo.entrada.descricaoVaga : undefined}
+          aoRecomecar={() => fluxo.setEtapa('entrada')}
+        />
+      )}
+    </>
+  )
+}
+
+/** Página "Otimizar": relatório de compatibilidade e otimização do currículo com IA (US04, US05). */
 export default function Otimizar() {
   const { data, loading, error, recarregar } = useApi(listarCurriculos)
+  const [parametros] = useSearchParams()
 
   return (
     <section className="page container">
       <header className="page__header">
         <div>
+          <p className="page__rotulo">Otimizador com IA</p>
           <h1 className="page__title">Otimizar para uma vaga</h1>
           <p className="page__lead">
-            Veja quais palavras-chave da vaga já estão no seu currículo e o que vale incluir.
+            Veja o que a vaga pede, o que você já tem e receba uma versão otimizada para ATS, com nota de 0 a 100. A IA
+            nunca inventa informação.
           </p>
         </div>
       </header>
-      <ConteudoOtimizar curriculos={data} loading={loading} error={error} recarregar={recarregar} />
+      {loading && <LoadingSpinner label="Carregando seus currículos…" />}
+      {error && (
+        <EmptyState
+          tone="error"
+          title="Não foi possível carregar seus currículos"
+          description={error}
+          action={<Button variant="secondary" onClick={recarregar}>Tentar de novo</Button>}
+        />
+      )}
+      {data?.length === 0 && (
+        <EmptyState
+          title="Você ainda não tem currículos"
+          description="Crie ou importe um currículo para comparar com a vaga."
+          action={<Button to="/curriculos/novo">Criar currículo</Button>}
+        />
+      )}
+      {data?.length > 0 && <ConteudoOtimizar curriculos={data} idInicial={parametros.get('curriculo') ?? ''} />}
     </section>
   )
 }

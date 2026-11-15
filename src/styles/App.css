@@ -20,14 +20,25 @@
   margin-bottom: var(--espaco-6);
 }
 
+/* Rótulo em Geist Mono acima do título (eyebrow do protótipo) */
+.page__rotulo {
+  margin-bottom: var(--espaco-2);
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-azul-texto);
+}
+
 .page__title {
   font-size: var(--texto-2xl);
+  letter-spacing: -0.02em;
 }
 
 .page__lead {
   margin-top: var(--espaco-2);
-  max-width: 60ch;
-  color: var(--cor-texto-secundario);
+  max-width: 62ch;
+  color: var(--cor-texto-suave);
 }
 
 .grid {
@@ -36,7 +47,68 @@
   gap: var(--espaco-4);
 }
 
+/* Título de bloco dentro de um card (ex.: "Pontuação atual") */
+.titulo-bloco {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Número grande do protótipo ("62/100", "78%") */
+.numero-destaque {
+  font-family: var(--fonte-ui);
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.numero-destaque small {
+  font-size: 0.4em;
+  font-weight: 500;
+  color: var(--cor-texto-apagado);
+  letter-spacing: 0;
+}
+
+/* Retorno de ações (salvar, registrar): verde de sucesso ou vermelho de erro */
+.mensagem-envio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  border-radius: 14px;
+  font-weight: 500;
+}
+
+.mensagem-envio__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.mensagem-envio--sucesso {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.mensagem-envio--erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+/* Dois campos lado a lado a partir do tablet */
+.campos-duplos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-4);
+}
+
 @media (min-width: 768px) {
+  .campos-duplos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .page {
     padding-block: var(--espaco-10) var(--espaco-16);
   }
@@ -48,7 +120,7 @@
   }
 
   .page__title {
-    font-size: var(--texto-3xl);
+    font-size: 1.875rem;
   }
 
   .grid--2,

@@ -1,0 +1,41 @@
+.barra-progresso__topo {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cor-tinta);
+}
+
+.barra-progresso__valor {
+  flex-shrink: 0;
+  color: var(--cor-salvia-escura);
+}
+
+.barra-progresso__trilho {
+  height: 7px;
+  border-radius: var(--raio-pill);
+  background: #eef1f6;
+  overflow: hidden;
+}
+
+.barra-progresso__trilho span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--cor-salvia);
+  animation: crescer 700ms ease-out;
+}
+
+.barra-progresso__legenda {
+  margin-top: 5px;
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-xs);
+}
+
+@keyframes crescer {
+  from {
+    width: 0;
+  }
+}

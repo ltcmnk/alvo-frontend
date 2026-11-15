@@ -1,0 +1,5 @@
+.page.conta { max-width: 560px; margin-inline: auto; }
+.conta__form { display: grid; gap: var(--espaco-5); margin-block: var(--espaco-8); }
+.conta__erro { color: var(--cor-erro); }
+.conta hr { border: 0; border-top: 1px solid var(--cor-borda-forte); margin-block: var(--espaco-10); }
+.conta h2 { margin-bottom: var(--espaco-4); }

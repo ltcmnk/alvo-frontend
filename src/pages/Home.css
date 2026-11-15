@@ -1,39 +1,45 @@
 .hero {
-  position: relative;
-  overflow: hidden; /* as colinas e o alvo passam da borda; sem isso haveria scroll horizontal */
-  padding-block: var(--espaco-10) var(--espaco-16);
+  padding-top: var(--espaco-6);
 }
 
-.hero__conteudo {
+/* Painel "céu" com colinas: o mesmo cartão grande do protótipo */
+.hero__painel {
   position: relative;
-  z-index: 1;
-  display: grid;
-  gap: var(--espaco-8);
-  align-items: center;
+  overflow: hidden; /* as colinas passam da borda; sem isso haveria scroll horizontal */
+  padding: var(--espaco-10) var(--espaco-5) 150px;
+  border-radius: var(--raio-card-grande);
+  background: var(--gradiente-ceu);
+  box-shadow: var(--sombra-elevada);
 }
 
 .hero__rotulo {
+  position: relative;
   font-family: var(--fonte-mono);
   font-size: var(--texto-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--cor-texto-suave);
+  color: var(--cor-azul-texto);
 }
 
 .hero__titulo {
+  position: relative;
+  max-width: 16ch;
   margin-top: var(--espaco-3);
-  font-size: 2.375rem;
-  line-height: 1.05;
+  font-size: 2.5rem;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
 }
 
 .hero__descricao {
+  position: relative;
+  max-width: 54ch;
   margin-top: var(--espaco-4);
-  max-width: 52ch;
   font-size: var(--texto-lg);
   color: var(--cor-texto-secundario);
 }
 
 .hero__acoes {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: var(--espaco-3);
@@ -41,49 +47,84 @@
 }
 
 .hero__status {
+  position: relative;
+  z-index: 1;
   margin-top: var(--espaco-5);
 }
 
-.hero__marca {
-  justify-self: center;
-  width: min(220px, 60vw);
-}
-
-/* Colinas em sálvia, herdadas do protótipo de alta fidelidade */
-.hero__colinas {
+.colinas {
   position: absolute;
-  inset: auto -10% -90px;
-  height: 190px;
-  background:
-    radial-gradient(ellipse 34% 100% at 24% 100%, var(--cor-salvia) 0 70%, transparent 71%),
-    radial-gradient(ellipse 40% 82% at 74% 100%, var(--cor-salvia-clara) 0 70%, transparent 71%);
+  inset: auto 0 0;
+  height: 130px;
+  pointer-events: none;
 }
 
-.passos {
-  padding-block: var(--espaco-12);
+.colinas span {
+  position: absolute;
+  bottom: -70px;
+  height: 180px;
+  border-radius: 50%;
 }
 
-.passos__titulo {
-  font-size: var(--texto-2xl);
+.colinas__esquerda {
+  left: -6%;
+  width: 60%;
+  background: var(--gradiente-colina);
+}
+
+.colinas__direita {
+  right: -8%;
+  bottom: -80px !important;
+  width: 66%;
+  height: 195px !important;
+  background: var(--gradiente-colina-2);
+}
+
+.secao-home {
+  padding-block: var(--espaco-12) 0;
+}
+
+.secao-home:last-child {
+  padding-bottom: var(--espaco-16);
+}
+
+.secao-home__titulo {
   margin-bottom: var(--espaco-6);
+  font-size: var(--texto-2xl);
 }
 
-.passos__lista {
+.passos,
+.ferramentas {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
+.passo {
+  padding: var(--espaco-6);
+  border-radius: var(--raio-card);
+}
+
+.passo--azul {
+  background: var(--cor-azul-suave);
+}
+
+.passo--salvia {
+  background: var(--cor-salvia-fundo);
+}
+
+.passo--manteiga {
+  background: var(--cor-manteiga-clara);
+}
+
 .passo__numero {
   display: inline-grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--raio-pill);
-  background: var(--cor-salvia-clara);
-  color: var(--cor-sobre-salvia);
-  font-family: var(--fonte-mono);
-  font-size: var(--texto-sm);
+  background: var(--cor-superficie);
+  font-weight: 800;
 }
 
 .passo__titulo {
@@ -93,41 +134,63 @@
 
 .passo__texto {
   margin-top: var(--espaco-2);
-  color: var(--cor-texto-secundario);
+  color: var(--cor-tinta-suave);
+}
+
+.ferramenta {
+  display: flex;
+  gap: var(--espaco-4);
+  padding: var(--espaco-5);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+}
+
+.ferramenta__marca {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--cor-salvia);
+  box-shadow: 0 0 0 5px var(--cor-salvia-fundo);
+}
+
+.ferramenta__nome {
+  font-family: var(--fonte-ui);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.ferramenta__texto {
+  margin-top: var(--espaco-1);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
 }
 
 @media (min-width: 480px) {
   .hero__titulo {
-    font-size: 2.75rem;
+    font-size: 2.875rem;
   }
 }
 
 @media (min-width: 768px) {
   .hero {
-    padding-block: var(--espaco-16) 7rem;
+    padding-top: var(--espaco-8);
   }
 
-  .hero__conteudo {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  .hero__painel {
+    padding: var(--espaco-16) var(--espaco-12) 170px;
+    border-radius: var(--raio-painel);
   }
 
   .hero__titulo {
-    font-size: var(--texto-4xl);
-  }
-
-  .hero__marca {
-    width: 100%;
-    max-width: 320px;
+    font-size: 3.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .hero__titulo {
-    font-size: 3.75rem;
-  }
-}
-
-@media (min-width: 1440px) {
   .hero__titulo {
     font-size: 4.25rem;
   }

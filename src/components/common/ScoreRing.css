@@ -15,7 +15,7 @@
 }
 
 .score-ring__trilho {
-  stroke: var(--cor-superficie-suave);
+  stroke: #eef1f6;
 }
 
 .score-ring__progresso {
@@ -27,9 +27,10 @@
   inset: 0;
   display: grid;
   place-items: center;
-  font-family: var(--fonte-titulo);
-  font-weight: 600;
+  font-family: var(--fonte-ui);
+  font-weight: 800;
   font-size: var(--texto-lg);
+  letter-spacing: -0.02em;
 }
 
 .score-ring--baixa .score-ring__progresso {
@@ -41,7 +42,7 @@
 }
 
 .score-ring--boa .score-ring__progresso {
-  stroke: var(--cor-manteiga);
+  stroke: #e3c95a;
 }
 
 .score-ring--boa .score-ring__valor {

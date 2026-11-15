@@ -1,0 +1,77 @@
+.analise-vaga {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+}
+
+.analise-vaga--vazia {
+  background: var(--cor-lavanda);
+  box-shadow: none;
+  color: var(--cor-tinta-suave);
+  font-size: var(--texto-sm);
+}
+
+.analise-vaga--vazia ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding-left: var(--espaco-5);
+}
+
+.analise-vaga--vazia li::marker {
+  color: var(--cor-roxo);
+  font-weight: 700;
+}
+
+.analise-vaga__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-lg);
+  font-weight: 500;
+  color: var(--cor-tinta);
+}
+
+.analise-vaga__dica {
+  padding: var(--espaco-3);
+  border-radius: 12px;
+  background: var(--cor-salvia-fundo);
+  color: var(--cor-sucesso);
+}
+
+.analise-vaga__rotulo {
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-azul-texto);
+}
+
+.analise-vaga__cargo {
+  font-family: var(--fonte-titulo);
+  font-size: var(--texto-xl);
+  line-height: 1.2;
+}
+
+.analise-vaga__resumo,
+.analise-vaga__legenda {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.analise-vaga__subtitulo {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.analise-vaga__palavras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

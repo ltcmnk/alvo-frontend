@@ -1,3 +1,10 @@
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-5);
+}
+
 .lista-curriculos {
   padding: 0;
   margin: 0;
@@ -7,55 +14,90 @@
 .cartao-curriculo {
   display: flex;
   flex-direction: column;
-  gap: var(--espaco-1);
+  gap: var(--espaco-4);
+  min-width: 0;
+  padding: var(--espaco-5);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+  transition: transform var(--transicao);
 }
 
-.cartao-curriculo__tipo {
-  align-self: flex-start;
-  margin-bottom: var(--espaco-3);
-  padding: var(--espaco-1) var(--espaco-3);
-  border-radius: var(--raio-pill);
-  font-size: var(--texto-xs);
-  font-weight: 600;
+.cartao-curriculo:hover {
+  transform: translateY(-2px);
 }
 
-.cartao-curriculo__tipo--base {
+.cartao-curriculo__topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+}
+
+/* Folha com três linhas de texto: dá a ideia do documento sem imagem */
+.cartao-curriculo__miniatura {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 64px;
+  height: 80px;
+  padding: 12px 10px;
+  border: 1px solid var(--cor-borda-fria);
+  border-radius: 8px;
   background: var(--cor-superficie-suave);
-  color: var(--cor-texto-secundario);
 }
 
-.cartao-curriculo__tipo--otimizado {
-  background: var(--cor-salvia-clara);
-  color: var(--cor-sobre-salvia);
+.cartao-curriculo__miniatura span {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--cor-borda-forte);
 }
 
-.cartao-curriculo__tipo--sob-medida {
-  background: var(--cor-manteiga);
-  color: var(--cor-sobre-manteiga);
+.cartao-curriculo__miniatura span:first-child {
+  width: 70%;
+  background: var(--cor-tinta);
+}
+
+.cartao-curriculo__miniatura span:last-child {
+  width: 55%;
 }
 
 .cartao-curriculo__cargo {
   font-family: var(--fonte-ui);
   font-size: var(--texto-lg);
+  font-weight: 600;
   letter-spacing: 0;
   overflow-wrap: anywhere;
 }
 
-.cartao-curriculo__nome {
-  color: var(--cor-texto-secundario);
+.cartao-curriculo__sub {
+  color: var(--cor-texto-suave);
   font-size: var(--texto-sm);
+  overflow-wrap: anywhere;
 }
 
 .cartao-curriculo__rodape {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: var(--espaco-3);
-  margin-top: var(--espaco-4);
+  margin-top: auto;
   padding-top: var(--espaco-4);
-  border-top: 1px solid var(--cor-borda);
+  border-top: 1px solid var(--cor-borda-fria);
+}
+
+.cartao-curriculo__nota {
+  font-size: var(--texto-2xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 .cartao-curriculo__data {
-  color: var(--cor-texto-suave);
+  color: var(--cor-texto-apagado);
   font-size: var(--texto-sm);
+}
+
+.cartao-curriculo__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
 }

@@ -6,7 +6,7 @@
   padding: var(--espaco-10) var(--espaco-5);
   text-align: center;
   background: var(--cor-superficie);
-  border: 1px dashed var(--cor-borda-forte);
+  border: 1.5px dashed var(--cor-borda-forte);
   border-radius: var(--raio-card);
 }
 
@@ -19,7 +19,7 @@
 .empty-state__title {
   font-family: var(--fonte-titulo);
   font-size: var(--texto-xl);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .empty-state__description {

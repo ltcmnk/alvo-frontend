@@ -2,19 +2,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--espaco-2);
-  min-height: 44px; /* área mínima de toque recomendada para celular */
+  gap: 9px;
+  min-height: 46px; /* área mínima de toque recomendada para celular */
   padding: 0 var(--espaco-5);
   border: 1px solid transparent;
   border-radius: var(--raio-botao);
   font-weight: 600;
-  font-size: var(--texto-sm);
+  font-size: 0.9375rem;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
   transition:
+    transform var(--transicao),
     background-color var(--transicao),
     border-color var(--transicao);
+}
+
+/* Hover sobe 2px, como no protótipo; a cor se mantém */
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
 }
 
 .button:disabled {
@@ -23,9 +29,10 @@
 }
 
 .button--sm {
-  min-height: 36px;
-  padding: 0 var(--espaco-3);
-  font-size: var(--texto-xs);
+  min-height: 38px;
+  padding: 0 var(--espaco-4);
+  border-radius: 11px;
+  font-size: var(--texto-sm);
 }
 
 .button--full {
@@ -37,13 +44,22 @@
   color: var(--cor-sobre-salvia);
 }
 
-.button--primary:hover:not(:disabled) {
-  background: var(--cor-salvia-hover);
+.button--escuro {
+  background: var(--cor-tinta);
+  color: #fff;
+}
+
+.button__ponto {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cor-salvia);
 }
 
 .button--secondary {
   background: var(--cor-superficie);
-  border-color: var(--cor-borda-forte);
+  border-color: var(--cor-borda);
   color: var(--cor-tinta);
 }
 
@@ -57,6 +73,15 @@
 }
 
 .button--ghost:hover:not(:disabled) {
-  background: var(--cor-superficie-suave);
+  background: var(--cor-pilula);
   color: var(--cor-tinta);
+}
+
+.button--perigo {
+  background: transparent;
+  color: var(--cor-erro);
+}
+
+.button--perigo:hover:not(:disabled) {
+  background: var(--cor-erro-fundo);
 }

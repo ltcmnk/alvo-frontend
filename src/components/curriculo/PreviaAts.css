@@ -1,0 +1,117 @@
+.previa-ats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-5);
+  min-width: 0;
+}
+
+.previa-ats__bloco {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.previa-ats__criterios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.previa-ats__dicas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding-left: var(--espaco-5);
+  color: var(--cor-tinta-suave);
+  font-size: var(--texto-sm);
+}
+
+/* Ordem das seções escolhida para o perfil: faixa lavanda, como o card "Como o Tailor funciona" */
+.previa-ats__ordem {
+  padding: var(--espaco-3) var(--espaco-4);
+  border-radius: 14px;
+  background: var(--cor-lavanda);
+  color: var(--cor-sobre-lavanda);
+  font-size: var(--texto-sm);
+}
+
+.previa-ats__alertas {
+  padding: var(--espaco-4);
+  border-radius: 14px;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+  font-size: var(--texto-sm);
+}
+
+.previa-ats__alertas ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  margin: var(--espaco-2) 0 0;
+  padding-left: var(--espaco-5);
+}
+
+.previa-ats__campos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-2);
+  margin: 0;
+}
+
+.previa-ats__campo {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  padding: var(--espaco-2) var(--espaco-3);
+  border-radius: 10px;
+  background: var(--cor-superficie-suave);
+  font-size: var(--texto-sm);
+}
+
+.previa-ats__campo dt {
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.previa-ats__campo dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.previa-ats__campo--ok dd {
+  color: var(--cor-sucesso);
+}
+
+.previa-ats__campo--atencao dd {
+  color: var(--cor-aviso);
+}
+
+.previa-ats__campo--ausente dd {
+  color: var(--cor-erro);
+}
+
+.previa-ats__topo-texto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+}
+
+.previa-ats__texto {
+  max-height: 360px;
+  margin: 0;
+  padding: var(--espaco-4);
+  overflow: auto;
+  border-radius: 12px;
+  background: var(--cor-tinta);
+  color: #e8e8e2;
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

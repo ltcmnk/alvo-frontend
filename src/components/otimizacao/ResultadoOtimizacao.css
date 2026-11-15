@@ -1,0 +1,117 @@
+.resultado-otim {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.resultado-otim__placar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-3) var(--espaco-5);
+  padding-bottom: var(--espaco-4);
+  border-bottom: 1px solid var(--cor-borda-fria);
+}
+
+.resultado-otim__rotulo {
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.resultado-otim__antes {
+  color: var(--cor-texto-apagado);
+}
+
+.resultado-otim__seta {
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-2xl);
+}
+
+.resultado-otim__compat {
+  flex-basis: 100%;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.resultado-otim__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--texto-sm);
+}
+
+.resultado-otim__lista li {
+  display: flex;
+  gap: var(--espaco-2);
+}
+
+.resultado-otim__lista span {
+  flex-shrink: 0;
+  color: var(--cor-salvia-escura);
+  font-weight: 700;
+}
+
+.resultado-otim__trava {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding: var(--espaco-4);
+  border-radius: 14px;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+  font-size: var(--texto-sm);
+}
+
+.resultado-otim__acordeoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.resultado-otim__categoria {
+  margin-bottom: 6px;
+  font-family: var(--fonte-mono);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cor-texto-apagado);
+}
+
+.resultado-otim__etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.resultado-otim__nota {
+  color: var(--cor-texto-apagado);
+  font-size: var(--texto-xs);
+}
+
+.resultado-otim__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+}
+
+.registrar-candidatura {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  border-radius: 14px;
+  background: var(--cor-superficie-suave);
+  border: 1px solid var(--cor-borda-fria);
+}
+
+@media (min-width: 768px) {
+  .resultado-otim__acoes > :first-child {
+    flex: 1;
+  }
+}

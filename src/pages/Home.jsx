@@ -1,82 +1,108 @@
 import ApiStatus from '../components/ApiStatus'
 import Button from '../components/common/Button'
-import Card from '../components/common/Card'
 import './Home.css'
 
 const PASSOS = [
   {
-    titulo: 'Monte seu currículo',
-    texto: 'Preencha dados, formação, experiências e habilidades. A prévia mostra o resultado enquanto você digita.',
+    titulo: 'Monte ou importe seu currículo',
+    texto: 'Preencha um formulário completo ou envie o PDF/DOCX que você já tem para aproveitar o conteúdo.',
+    tom: 'azul',
   },
   {
-    titulo: 'Cole a vaga que você quer',
-    texto: 'O Alvo compara a descrição da vaga com o seu currículo e mostra as palavras-chave que faltam.',
+    titulo: 'Cole a vaga e veja o relatório',
+    texto: 'O Alvo extrai as palavras-chave da vaga e mostra quais requisitos você atende e como fechar os gaps.',
+    tom: 'salvia',
   },
   {
-    titulo: 'Acompanhe cada candidatura',
-    texto: 'Veja em que etapa está cada vaga: aplicado, entrevista, oferta ou rejeitado.',
+    titulo: 'Otimize, revise e envie',
+    texto: 'A IA reescreve para o ATS sem inventar nada. Você revisa, exporta em PDF ou DOCX e acompanha a candidatura.',
+    tom: 'manteiga',
   },
 ]
 
-/** Desenho do "alvo" da marca: anéis concêntricos com o centro em sálvia. */
-function MarcaAlvo() {
+const FERRAMENTAS = [
+  { nome: 'Nota ATS de 0 a 100', texto: 'Critérios claros: seções, palavras-chave, impacto e formatação.' },
+  { nome: 'Versão sob medida', texto: 'Uma versão para cada vaga, com o % de compatibilidade antes e depois.' },
+  { nome: 'Prévia como o ATS lê', texto: 'O texto que o sistema enxerga, os campos que ele extrai e o que pode dar errado.' },
+  { nome: 'Tracker de candidaturas', texto: 'Aplicado, entrevista, oferta ou rejeitado, com o currículo usado em cada vaga.' },
+]
+
+/** Colinas verdes do protótipo: elipses sobrepostas no rodapé do painel. */
+function Colinas() {
   return (
-    <svg className="hero__marca" viewBox="0 0 320 320" aria-hidden="true">
-      <circle cx="160" cy="160" r="150" fill="var(--cor-lavanda)" />
-      <circle cx="160" cy="160" r="112" fill="var(--cor-superficie)" />
-      <circle cx="160" cy="160" r="76" fill="var(--cor-manteiga)" />
-      <circle cx="160" cy="160" r="42" fill="var(--cor-salvia)" />
-      <circle cx="160" cy="160" r="150" fill="none" stroke="var(--cor-tinta)" strokeWidth="2" />
-      <circle cx="160" cy="160" r="9" fill="var(--cor-tinta)" />
-    </svg>
+    <div className="colinas" aria-hidden="true">
+      <span className="colinas__esquerda" />
+      <span className="colinas__direita" />
+    </div>
   )
 }
 
-/** Abertura da página: proposta do Alvo e as duas ações principais. */
+/** Abertura: painel "céu" com a proposta do Alvo e as duas ações principais. */
 function Hero() {
   return (
-    <section className="hero">
-      <div className="container hero__conteudo">
-        <div className="hero__texto">
-          <p className="hero__rotulo">Currículo e candidaturas</p>
-          <h1 className="hero__titulo">Seu currículo, ajustado para cada vaga.</h1>
-          <p className="hero__descricao">
-            O Alvo organiza suas informações profissionais, compara o currículo com a vaga e aponta
-            o que ajustar para passar pelos filtros de seleção automática (ATS).
-          </p>
-          <div className="hero__acoes">
-            <Button to="/curriculos/novo">Criar currículo</Button>
-            <Button to="/otimizar" variant="secondary">
-              Otimizar para uma vaga
-            </Button>
-          </div>
-          <div className="hero__status">
-            <ApiStatus />
-          </div>
+    <section className="container hero">
+      <div className="hero__painel">
+        <p className="hero__rotulo">Currículo, IA e candidaturas</p>
+        <h1 className="hero__titulo">
+          Seu currículo, <em>no alvo</em> de cada vaga.
+        </h1>
+        <p className="hero__descricao">
+          O Alvo compara seu currículo com a vaga, mostra o que falta e reescreve para passar pelos filtros
+          automáticos (ATS), sem inventar nada sobre você.
+        </p>
+        <div className="hero__acoes">
+          <Button to="/curriculos/novo">Criar currículo</Button>
+          <Button to="/otimizar" variant="escuro">
+            Otimizar para uma vaga
+          </Button>
         </div>
-        <MarcaAlvo />
+        <div className="hero__status">
+          <ApiStatus />
+        </div>
+        <Colinas />
       </div>
-      <div className="hero__colinas" aria-hidden="true" />
     </section>
   )
 }
 
-/** Os três passos do uso do Alvo; a numeração reflete a ordem real do fluxo. */
+/** Os três passos do uso do Alvo, nas cores do protótipo (azul, sálvia, manteiga). */
 function ComoFunciona() {
   return (
-    <section className="container passos" aria-labelledby="titulo-passos">
-      <h2 id="titulo-passos" className="passos__titulo">
+    <section className="container secao-home" aria-labelledby="titulo-passos">
+      <h2 id="titulo-passos" className="secao-home__titulo">
         Como funciona
       </h2>
-      <ol className="grid grid--3 passos__lista">
+      <ol className="grid grid--3 passos">
         {PASSOS.map((passo, indice) => (
-          <Card as="li" key={passo.titulo} className="passo">
+          <li key={passo.titulo} className={`passo passo--${passo.tom}`}>
             <span className="passo__numero">{indice + 1}</span>
             <h3 className="passo__titulo">{passo.titulo}</h3>
             <p className="passo__texto">{passo.texto}</p>
-          </Card>
+          </li>
         ))}
       </ol>
+    </section>
+  )
+}
+
+/** O que o usuário recebe em cada otimização. */
+function Ferramentas() {
+  return (
+    <section className="container secao-home" aria-labelledby="titulo-ferramentas">
+      <h2 id="titulo-ferramentas" className="secao-home__titulo">
+        Tudo o que a otimização entrega
+      </h2>
+      <ul className="grid grid--2 ferramentas">
+        {FERRAMENTAS.map((ferramenta) => (
+          <li key={ferramenta.nome} className="ferramenta">
+            <span className="ferramenta__marca" aria-hidden="true" />
+            <div>
+              <h3 className="ferramenta__nome">{ferramenta.nome}</h3>
+              <p className="ferramenta__texto">{ferramenta.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
@@ -87,6 +113,7 @@ export default function Home() {
     <>
       <Hero />
       <ComoFunciona />
+      <Ferramentas />
     </>
   )
 }

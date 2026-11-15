@@ -1,73 +1,67 @@
-.previa {
-  min-width: 0;
-}
-
-.previa__rotulo {
-  margin-bottom: var(--espaco-3);
-  font-family: var(--fonte-mono);
-  font-size: var(--texto-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cor-texto-suave);
-}
-
-/* Visual de folha de papel, para o usuário enxergar o documento final */
-.previa__documento {
+/* Folha branca com a tipografia do PDF exportado (Helvetica/Arial), não a do app */
+.previa-doc {
   display: flex;
   flex-direction: column;
-  gap: var(--espaco-4);
-  padding: var(--espaco-6);
-  background: var(--cor-superficie);
-  border: 1px solid var(--cor-borda);
-  border-radius: var(--raio-campo);
-  box-shadow: var(--sombra-elevada);
-  font-size: var(--texto-sm);
+  gap: 10px;
+  padding: var(--espaco-6) var(--espaco-5);
+  background: #fff;
+  border: 1px solid var(--cor-borda-fria);
+  border-radius: 6px;
+  box-shadow: var(--sombra-secao);
+  color: #111;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.4;
   overflow-wrap: anywhere;
 }
 
-.previa__nome {
-  font-family: var(--fonte-titulo);
-  font-size: var(--texto-2xl);
-  font-weight: 600;
-  line-height: 1.1;
+.previa-doc__cabecalho {
+  text-align: center;
 }
 
-.previa__cargo {
-  margin-top: calc(-1 * var(--espaco-3));
-  color: var(--cor-texto-secundario);
+.previa-doc__nome {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
-.previa__contato {
-  margin-top: calc(-1 * var(--espaco-3));
-  color: var(--cor-texto-suave);
-}
-
-.previa__secao {
+.previa-doc__secao {
   display: flex;
   flex-direction: column;
-  gap: var(--espaco-2);
-  padding-top: var(--espaco-4);
-  border-top: 1px solid var(--cor-borda);
+  gap: 5px;
 }
 
-.previa__secao-titulo {
-  font-family: var(--fonte-mono);
-  font-size: var(--texto-xs);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cor-texto-suave);
+.previa-doc__titulo {
+  padding-bottom: 2px;
+  border-bottom: 1px solid #555;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
-.previa__destaque {
-  font-weight: 600;
+.previa-doc__bloco {
+  display: flex;
+  flex-direction: column;
 }
 
-.previa__periodo {
+.previa-doc__linha {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+}
+
+.previa-doc__linha--forte {
+  font-weight: 700;
+}
+
+.previa-doc__direita {
+  flex-shrink: 0;
   font-weight: 400;
-  color: var(--cor-texto-suave);
+  text-align: right;
 }
 
-.previa__experiencia + .previa__experiencia {
-  margin-top: var(--espaco-3);
+.previa-doc__bullets {
+  margin: 2px 0 0;
+  padding-left: 1.1em;
+  list-style: '–  ';
 }

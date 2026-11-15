@@ -11,8 +11,8 @@
 .loading-spinner__circulo {
   width: 22px;
   height: 22px;
-  border: 3px solid var(--cor-salvia-clara);
-  border-top-color: var(--cor-salvia-hover);
+  border: 3px solid #eef1f6;
+  border-top-color: var(--cor-salvia);
   border-radius: 50%;
   animation: girar 0.8s linear infinite;
 }

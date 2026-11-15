@@ -1,0 +1,59 @@
+.painel-previa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  min-width: 0;
+}
+
+.painel-previa__topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+}
+
+.painel-previa__abas {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: var(--raio-pill);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+}
+
+.painel-previa__aba {
+  min-height: 36px;
+  padding: 0 var(--espaco-4);
+  border: 0;
+  border-radius: var(--raio-pill);
+  background: transparent;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel-previa__aba--ativa {
+  background: var(--cor-pilula);
+  color: var(--cor-tinta);
+}
+
+.painel-previa__nota {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.painel-previa__nota strong {
+  color: var(--cor-tinta);
+  font-size: var(--texto-lg);
+  font-weight: 800;
+}
+
+.painel-previa__erro {
+  padding: var(--espaco-5);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-sm);
+}
