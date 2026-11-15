@@ -45,14 +45,18 @@ function Placar({ resultado }) {
   )
 }
 
-/** Avisos da trava de fatos: o que foi descartado e os números que o usuário precisa conferir. */
+/** Avisos da trava de fatos e da garantia de nota: o que foi descartado, restaurado ou precisa ser conferido. */
 function AvisosTrava({ travas }) {
-  if (!travas.removidos.length && !travas.numerosParaConferir.length) return null
+  const restaurados = travas.restaurados ?? []
+  if (!travas.removidos.length && !travas.numerosParaConferir.length && !restaurados.length) return null
   return (
     <div className="resultado-otim__trava" role="status">
       <p className="titulo-bloco">Trava de fatos</p>
       {travas.removidos.length > 0 && (
         <p>Removemos o que não estava no seu currículo original: {travas.removidos.join(', ')}.</p>
+      )}
+      {restaurados.length > 0 && (
+        <p>Mantivemos o seu texto original em {restaurados.join(', ')}: a versão reescrita baixaria a nota.</p>
       )}
       {travas.numerosParaConferir.length > 0 && (
         <p>
