@@ -141,10 +141,11 @@ export default function ResultadoOtimizacao({ resultado, original, analiseVaga, 
   const navigate = useNavigate()
   const [salvo, setSalvo] = useState(null)
   const [erro, setErro] = useState('')
-  const vagaAlvo = analiseVaga
-    ? { cargo: analiseVaga.cargo?.slice(0, 120), compatibilidade: resultado.compatibilidade?.depois }
+  const temVaga = Boolean(descricaoVaga?.trim())
+  const vagaAlvo = temVaga
+    ? { cargo: (analiseVaga?.cargo || original.cargoAlvo)?.slice(0, 120), compatibilidade: resultado.compatibilidade?.depois }
     : undefined
-  const extras = { tipo: analiseVaga ? 'sob-medida' : 'otimizado', origemId: original.id, vagaAlvo }
+  const extras = { tipo: temVaga ? 'sob-medida' : 'otimizado', origemId: original.id, vagaAlvo }
 
   async function salvar() {
     setErro('')
