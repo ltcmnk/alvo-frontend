@@ -16,7 +16,7 @@ function useAnaliseVaga(descricaoVaga) {
     let ativo = true
     const espera = setTimeout(() => {
       analisarVaga(descricaoVaga)
-        .then((dados) => ativo && setAnalise(dados))
+        .then((dados) => ativo && setAnalise({ texto: descricaoVaga, dados }))
         .catch(() => ativo && setAnalise(null))
     }, ESPERA_ANALISE_MS)
     return () => {
@@ -25,7 +25,7 @@ function useAnaliseVaga(descricaoVaga) {
     }
   }, [descricaoVaga, longaOSuficiente])
   // Texto curto demais: esconde a análise anterior sem precisar de outro render
-  return longaOSuficiente ? analise : null
+  return longaOSuficiente && analise?.texto === descricaoVaga ? analise.dados : null
 }
 
 /**
