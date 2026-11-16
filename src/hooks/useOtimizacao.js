@@ -44,8 +44,12 @@ export default function useOtimizacao(curriculos, idInicial = '') {
   const curriculo = curriculos.find((item) => String(item.id) === String(entrada.curriculoId))
   const temVaga = entrada.descricaoVaga.trim().length >= MINIMO_VAGA
 
-  // useCallback: a escolha do provedor chama `alterar` dentro de um efeito
-  const alterar = useCallback((campo, valor) => setEntrada((atual) => ({ ...atual, [campo]: valor })), [])
+  // A escolha do provedor chama `alterar` dentro de um efeito: valor igual devolve o mesmo estado,
+  // sem novo render. Sem isso a página entrava em loop e a navegação parava de trocar de tela.
+  const alterar = useCallback(
+    (campo, valor) => setEntrada((atual) => (atual[campo] === valor ? atual : { ...atual, [campo]: valor })),
+    [],
+  )
 
   /** Roda uma chamada de IA controlando o "processando" e o erro. */
   async function executar(tipo, chamada, proximaEtapa) {
